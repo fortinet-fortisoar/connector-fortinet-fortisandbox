@@ -28,25 +28,57 @@
         "value": ""
       },
       {
-        "title": "Username",
-        "description": "Username of the Fortinet FortiSandbox server to which you will connect and perform automated operations.",
-        "name": "username",
-        "type": "text",
-        "visible": true,
+        "name": "instance_type",
+        "title": "Instance Type",
+        "tooltip": "Select whether you are using an on-premise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
+        "description": "Select whether you are using an on-premise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
+        "type": "select",
+        "options": [
+            "OnPremise",
+            "Cloud"
+        ],
         "editable": true,
+        "visible": true,
         "required": true,
-        "value": ""
-      },
-      {
-        "title": "Password",
-        "description": "Password used to access the Fortinet FortiSandbox server to which you will connect and perform the automated operations.",
-        "name": "password",
-        "value": "",
-        "type": "password",
-        "visible": true,
-        "editable": true,
-        "required": true
-      },
+        "value": "OnPremise",
+        "onchange": {
+            "OnPremise": [
+                {
+                    "title": "Username",
+                    "description": "Username of the Fortinet FortiSandbox server to which you will connect and perform automated operations.",
+                    "name": "username",
+                    "type": "text",
+                    "visible": true,
+                    "editable": true,
+                    "required": true,
+                    "value": ""
+                },
+                {
+                    "title": "Password",
+                    "description": "Password used to access the Fortinet FortiSandbox server to which you will connect and perform the automated operations.",
+                    "name": "password",
+                    "value": "",
+                    "type": "password",
+                    "visible": true,
+                    "editable": true,
+                    "required": true
+                }
+            ],
+            "Cloud": [
+                {
+                    "title": "API Authentication Token",
+                    "description": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud",
+                    "tooltip": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud",
+                    "name": "api_token",
+                    "value": "",
+                    "type": "password",
+                    "visible": true,
+                    "editable": true,
+                    "required": true
+                }
+            ]
+        }
+    },
       {
         "title": "Verify SSL",
         "name": "verify_ssl",

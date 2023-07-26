@@ -4,11 +4,14 @@
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
 import requests
+import logging
 from base64 import b64encode
+from requests_toolbelt.utils import dump
 from connectors.core.connector import get_logger, ConnectorError
 
 
 logger = get_logger('fortisandbox')
+#logger.setLevel(logging.DEBUG) # Uncomment for connector specific debug
 
 
 QUERY_SCHEMA = {
@@ -22,6 +25,17 @@ QUERY_SCHEMA = {
         ],
         'id': 1,
         'ver': '2.1'
+    },
+    'cloud_login': {
+        "method": "get",
+        "params": [
+            {
+            "url": "/sys/login/token",
+            "token": ""
+            }
+        ],
+        'id': 1,
+        'ver': '2.5'
     },
     'logout': {
         'method': 'exec',
@@ -345,13 +359,20 @@ class FortiSandbox:
         self.base_url = config.get('server').strip('/') + '/jsonrpc'
         if not self.base_url.startswith('https://'):
             self.base_url = 'https://{0}'.format(self.base_url)
-        self.username = config['username']
-        self.password = config['password']
+        self.instance_type = config.get('instance_type')
+        if self.instance_type == 'OnPremise':
+            self.username = config.get('username')
+            self.password = config.get('password')
+            self.on_prem = True
+        elif self.instance_type == 'Cloud':
+            self.api_token = config.get('api_token')
+            self.on_prem = False            
         self.verify_ssl = config['verify_ssl']
         self.error_msg = {
             400: 'Bad/Invalid Request',
             401: 'Invalid credentials were provided',
             403: 'Access Denied',
+            404: 'Not Found',
             402: 'API Search quota is exceeded',
             500: 'Internal Server Error',
             503: 'Service Unavailable',
@@ -389,6 +410,7 @@ class FortiSandbox:
 
         try:
             response = requests.post(self.base_url, json=data, verify=self.verify_ssl)
+            logger.debug('REQUESTS_DUMP:\n{}\n'.format(dump.dump_all(response).decode('utf-8')))
             if response.ok:
                 return response.json()
             if self.error_msg[response.status_code]:
@@ -407,8 +429,13 @@ class FortiSandbox:
 
     def login(self):
         try:
-            login_input = QUERY_SCHEMA.get('login')
-            login_input['params'][0]['data'] = [{'user': self.username, 'passwd': self.password}]
+            if self.on_prem:
+                login_input = QUERY_SCHEMA.get('login')
+                login_input['params'][0]['data'] = [{'user': self.username, 'passwd': self.password}]
+            else:
+                login_input = QUERY_SCHEMA.get('cloud_login')
+                login_input['params'][0]['token'] = self.api_token
+
             login_response = self._handle_post(login_input)
             if 'session' in login_response:
                 logger.info('Logged in successfully')

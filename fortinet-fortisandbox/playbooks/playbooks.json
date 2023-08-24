@@ -3,7 +3,7 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Fortinet FortiSandbox - 1.0.5",
+      "name": "Sample - Fortinet FortiSandbox - 2.0.0",
       "description": "Sample playbooks for \"Fortinet FortiSandbox\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
       "image": null,
@@ -75,7 +75,7 @@
                 "params": {
                   "jid": "{% if vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0] is number %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0]}}{% else %}\"{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids}}\"{% endif %}"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -167,7 +167,7 @@
                   "timeout": 1200,
                   "overwrite_vm_list": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_urlfile",
                 "mock_result": "{\n  \"data\": {\n    \"id\": 12,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/alert/ondemand/submit-file\",\n      \"data\": {\n        \"msg\": \"File was submitted successfully\",\n        \"sid\": 6195803792602557000,\n        \"error\": \"\"\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
@@ -411,7 +411,7 @@
                 "params": {
                   "sid": "{% if vars.steps.Submit_URL.data.result.data.sid is number %}{{vars.steps.Submit_URL.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_URL.data.result.data.sid}}\"{% endif %}"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -577,7 +577,8 @@
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "Subroutine"
+            "Enrichment",
+            "ManualTrigger"
           ]
         },
         {
@@ -608,7 +609,7 @@
                 "params": {
                   "url": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_url_rating",
                 "operationTitle": "Get URL Rating",
@@ -704,7 +705,7 @@
                   "file_hash": "",
                   "hash_type": "SHA1"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_file_rating",
                 "operationTitle": "Get File Rating",
@@ -802,7 +803,7 @@
                   "timeout": 60,
                   "overwrite_vm_list": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_urlfile",
                 "operationTitle": "Submit URL",
@@ -925,7 +926,7 @@
                   "qval": "",
                   "qtype": "sha256"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_pdf_report",
                 "operationTitle": "Get PDF Report",
@@ -994,7 +995,7 @@
                   "file_hash": "",
                   "hash_type": "SHA1"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_job_behaviour",
                 "operationTitle": "Get Job Behaviour",
@@ -1118,7 +1119,7 @@
                   "stime": "",
                   "need_av_ver": false
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_avrescan",
                 "operationTitle": "Get AV-Rescan Result",
@@ -1211,7 +1212,7 @@
                 "name": "Fortinet FortiSandbox",
                 "config": "''",
                 "params": [],
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_system_status",
                 "operationTitle": "Get System Status",
@@ -1283,7 +1284,7 @@
                 "params": {
                   "sid": "{% if vars.steps.Submit_File.data.result.data.sid is number %}{{vars.steps.Submit_File.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_File.data.result.data.sid}}\"{% endif %}"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -1405,7 +1406,7 @@
                   "indicator_iri": "{{vars.indicator_value}}",
                   "overwrite_vm_list": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_file",
                 "mock_result": "{\n  \"data\": {\n    \"id\": 11,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/alert/ondemand/submit-file\",\n      \"data\": {\n        \"msg\": \"File was submitted successfully\",\n        \"sid\": \"6195907427360919950\",\n        \"error\": \"\"\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
@@ -1476,7 +1477,7 @@
                 "params": {
                   "jid": "{% if vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0] is number %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0]}}{% else %}\"{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids}}\"{% endif %}"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -1809,7 +1810,8 @@
           "deletedAt": null,
           "importedBy": [],
           "recordTags": [
-            "Subroutine"
+            "Enrichment",
+            "ManualTrigger"
           ]
         },
         {
@@ -1865,7 +1867,7 @@
                 "name": "Fortinet FortiSandbox",
                 "config": "''",
                 "params": [],
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_stats",
                 "operationTitle": "Get Scan Stats",
@@ -1931,7 +1933,7 @@
                 "name": "Fortinet FortiSandbox",
                 "config": "''",
                 "params": [],
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_installed_vm",
                 "operationTitle": "Get All Installed VM",
@@ -2054,7 +2056,7 @@
                   "lazy": false,
                   "type": "SHA1"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "download_hashes_url_from_mwpkg",
                 "operationTitle": "List Filehash or URL From Malware Package or URL Package",
@@ -2149,7 +2151,7 @@
                 "params": {
                   "sid": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_submission_job_list",
                 "operationTitle": "Get Submission Job List",
@@ -2245,7 +2247,7 @@
                   "jid": "",
                   "comments": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "mark_sample_fp_fn",
                 "operationTitle": "Toggle FPN State",
@@ -2314,7 +2316,7 @@
                   "file_hash": "",
                   "hash_type": "SHA1"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_file_verdict",
                 "operationTitle": "Get File Verdict",
@@ -2438,7 +2440,7 @@
                   "list_type": "WHITE",
                   "indicator_type": "SHA1"
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "handle_white_black_list",
                 "operationTitle": "Update White or Black List",
@@ -2533,7 +2535,7 @@
                 "params": {
                   "jid": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_result_job",
                 "operationTitle": "Get Job Verdict Detail",
@@ -2629,7 +2631,7 @@
                   "input_type": "Attachment ID",
                   "overwrite_vm_list": ""
                 },
-                "version": "1.0.5",
+                "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_file",
                 "operationTitle": "Submit File",
@@ -2682,6 +2684,7 @@
   "exported_tags": [
     "fortinet-fortisandbox",
     "Fortinet",
-    "Subroutine"
+    "Enrichment",
+    "ManualTrigger"
   ]
 }

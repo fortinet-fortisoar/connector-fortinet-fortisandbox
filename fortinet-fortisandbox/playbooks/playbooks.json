@@ -969,7 +969,7 @@
         {
           "@type": "Workflow",
           "triggerLimit": null,
-          "name": "Get Job Behaviour",
+          "name": "Get Job Behavior",
           "aliasName": null,
           "tag": "#Fortinet FortiSandbox",
           "description": "Retrieves job behavior details associated with the file type and filehash you have specified from Fortinet FortiSandbox.",
@@ -986,7 +986,7 @@
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Get Job Behaviour",
+              "name": "Get Job Behavior",
               "description": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
@@ -998,7 +998,7 @@
                 "version": "2.0.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_job_behaviour",
-                "operationTitle": "Get Job Behaviour",
+                "operationTitle": "Get Job Behavior",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -1016,7 +1016,7 @@
               "description": null,
               "arguments": {
                 "route": "0b6692c3-5f5f-4ee8-9ee0-9e9d231c390e",
-                "title": "Fortinet FortiSandbox: Get Job Behaviour",
+                "title": "Fortinet FortiSandbox: Get Job Behavior",
                 "resources": [
                   "alerts"
                 ],
@@ -1041,7 +1041,7 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Job Behaviour",
+              "name": "Start-> Get Job Behavior",
               "targetStep": "/api/3/workflow_steps/bfeaefe3-2c26-4af3-aa61-19df7d9165ad",
               "sourceStep": "/api/3/workflow_steps/d0ef7c38-dde2-4d72-a9e7-7cbff9ed976f",
               "label": null,

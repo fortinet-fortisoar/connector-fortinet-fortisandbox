@@ -12,7 +12,7 @@
     "URL_Enrichment",
     "File_Enrichment"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/fortinet-fortisandbox/688/fortinet-fortisandbox-v2-0-0",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "configuration": {
@@ -32,7 +32,7 @@
         "name": "instance_type",
         "title": "Instance Type",
         "tooltip": "Select whether you are using an on-premise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
-        "description": "Select whether you are using an on-premise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
+        "description": "Select the instance type from the following options: OnPremise, Cloud.",
         "type": "select",
         "options": [
           "OnPremise",
@@ -70,8 +70,8 @@
           "Cloud": [
             {
               "title": "API Authentication Token",
-              "description": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud",
-              "tooltip": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud",
+              "description": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud.",
+              "tooltip": "FortiSandbox Cloud Token for API authenticate. You can generate a token with the command: login-token -g on FortiSandbox Cloud.",
               "name": "api_token",
               "value": "",
               "type": "password",
@@ -90,7 +90,7 @@
         "editable": true,
         "visible": true,
         "value": true,
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not."
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set to True."
       }
     ]
   },
@@ -107,7 +107,7 @@
           "title": "Indicator IRI/Attachment ID",
           "tooltip": "File type support: 32bit and 64bit executable file, applies to all the Portable Executables (PE) files. Any text based file, such as HTML,VBA,VBS, JS, PDF, BAT, SH, PHP, XML, power shell scripts, archive formats like .tar, .gz, .tar.gz, .tgz, .zip, .bz2, .rar,office documents, PDFs are also supported.",
           "type": "select",
-          "description": "Select whether you want to submit an Indicator IRI or an Attachment ID to Fortinet FortiSandbox. If you select Indicator IRI, then in the Indicator IRI field, specify the IRI of the indicator that you want to submit to Fortinet FortiSandbox. If you select Attachment ID, then in the Attachment ID field, specify the ID of the attachment that you want to submit to Fortinet FortiSandbox. Attachment IRIs are used to access the file directly from the FortiSOAR™ \"Attachments\" module. Note: Following file types are supported: 32bit and 64bit executable files, applies to all the Portable Executables (PE) files. Any text-based file such as, HTML, VBA, VBS, JS, office documents, PDF, BAT, SH, PHP, XML, and power shell scripts, archive formats like .tar, .gz, .tar.gz, .tgz, .zip, .bz2, and .rar.",
+          "description": "Select whether you want to submit an Indicator IRI or an Attachment ID to Fortinet FortiSandbox. Select from the following options: Indicator IRI, Attachment ID. Specify the ID of the attachment that you want to submit to Fortinet FortiSandbox, in the Attachment ID field. Attachment IRIs are used to access the file directly from the FortiSOAR™ Attachments module. NOTE: Following file types are supported: 32bit and 64bit executable files including all the Portable Executables (PE) files text-based file such as, HTML, VBA, VBS, JS, office documents, PDF, BAT, SH, PHP, XML PowerShell scripts archive formats like .tar, .gz, .tar.gz, .tgz, .zip, .bz2, and .rar",
           "options": [
             "Attachment ID",
             "Indicator IRI"
@@ -122,8 +122,8 @@
                 "name": "attachment_iri",
                 "title": "Attachment IRI",
                 "type": "text",
-                "tooltip": "Provide the FortiSOAR™ attachment IRI.",
-                "description": "IRI of the attachment that you want to submit to Fortinet FortiSandbox.\nAttachment IRI that is used to access the file directly from the FortiSOAR™ \"Attachments\" module.",
+                "tooltip": "Specify the ID of the attachment that you want to submit to Fortinet FortiSandbox.",
+                "description": "Specify the ID of the attachment that you want to submit to Fortinet FortiSandbox, in the Attachment ID field. Attachment IRIs are used to access the file directly from the FortiSOAR™ Attachments module.",
                 "editable": true,
                 "visible": true,
                 "required": true,
@@ -134,7 +134,8 @@
               {
                 "name": "indicator_iri",
                 "title": "Indicator IRI",
-                "description": "Indicator IRI of the FortiSOAR™ file that you want to submit for analysis to FortiSandbox",
+                "tooltip": "Specify the IRI of the indicator that you want to submit to Fortinet FortiSandbox.",
+                "description": "Specify the IRI of the indicator that you want to submit to Fortinet FortiSandbox, in the Indicator IRI field.",
                 "type": "text",
                 "editable": true,
                 "visible": true,
@@ -411,7 +412,8 @@
           "title": "Hash Type",
           "name": "hash_type",
           "type": "select",
-          "description": "Type of the filehash whose associated job behavior details you want to retrieve from Fortinet FortiSandbox. You can choose from the following values: MD5, SHA1, or SHA256.",
+          "description": "Type of the filehash based on which you want to retrieve the file rating from Fortinet FortiSandbox.\nYou can choose from the following values: MD5, SHA1, or SHA256.",
+          "tooltip": "Type of the filehash based on which you want to retrieve the file rating from Fortinet FortiSandbox.",
           "options": [
             "MD5",
             "SHA1",
@@ -426,7 +428,7 @@
           "title": "Filehash",
           "name": "file_hash",
           "tooltip": "Provide the value of filehash (considering the filehash type you have chosen from the Hash Type drop-down list)",
-          "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behavior details you want to retrieve from Fortinet FortiSandbox.",
+          "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) based on which you want to retrieve the file rating from Fortinet FortiSandbox.",
           "type": "text",
           "required": true,
           "editable": true,
@@ -509,7 +511,8 @@
           "title": "Hash Type",
           "name": "hash_type",
           "type": "select",
-          "description": "Type of the filehash whose associated job behavior details you want to retrieve from Fortinet FortiSandbox. You can choose from the following values: MD5, SHA1, or SHA256.",
+          "description": "Type of the filehash based on which you want to retrieve the file verdict details from Fortinet FortiSandbox.\nYou can choose from the following values: MD5, SHA1, or SHA256.",
+          "tooltip": "Type of the filehash based on which you want to retrieve the file verdict details from Fortinet FortiSandbox.",
           "options": [
             "MD5",
             "SHA1",
@@ -524,7 +527,7 @@
           "title": "Filehash",
           "name": "file_hash",
           "tooltip": "Provide the value of filehash (considering the filehash type you have chosen from the Hash Type drop-down list)",
-          "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behavior details you want to retrieve from Fortinet FortiSandbox.",
+          "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) based on which you want to retrieve the file verdict details from Fortinet FortiSandbox.",
           "type": "text",
           "required": true,
           "editable": true,
@@ -580,6 +583,7 @@
           "name": "hash_type",
           "type": "select",
           "description": "Type of the filehash whose associated job behavior details you want to retrieve from Fortinet FortiSandbox. You can choose from the following values: MD5, SHA1, or SHA256.",
+          "tooltip": "Type of the filehash whose associated job behavior details you want to retrieve from Fortinet FortiSandbox.",
           "options": [
             "MD5",
             "SHA1",
@@ -711,7 +715,7 @@
       "operation": "get_pdf_report",
       "category": "investigation",
       "annotation": "get_report",
-      "description": "Retrieves a PDF report from Fortinet FortiSandbox based on the query type and value parameter you have specified and creates an attachment in the FortiSOAR™ \"Attachment\" module if the report is found.",
+      "description": "Retrieves a PDF report from Fortinet FortiSandbox based on the query type and value parameter you have specified and creates an attachment in the FortiSOAR™ Attachment module if the report is found.",
       "title": "Get PDF Report",
       "parameters": [
         {
@@ -767,7 +771,7 @@
           "title": "Lazy",
           "name": "lazy",
           "tooltip": "False: use specified major and minor number; True: get the latest version.",
-          "description": "Use this parameter to specify the major and minor numbers of the Malware Package or the URL Package. If you clear this option, i.e., set it to False, then the list of file hashes or URLs is retrieved from the Malware Package or URL Package of the specified major and minor number. If you select this option, i.e., set it to True, then the latest version of the Malware Package or URL Package is used to retrieve the list of file hashes or URLs. If this parameter is set as False, then you must specify the following: Major: Major number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs. Minor: Minor number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs.",
+          "description": "Use this parameter to specify the major and minor numbers of the Malware Package or the URL Package. If you clear this option, i.e., set it to False, then the list of file hashes or URLs is retrieved from the Malware Package or URL Package of the specified major and minor number. If you select this option, i.e., set it to True, then the latest version of the Malware Package or URL Package is used to retrieve the list of file hashes or URLs.",
           "type": "checkbox",
           "required": true,
           "editable": true,
@@ -778,8 +782,8 @@
               {
                 "title": "Major Number",
                 "name": "major",
-                "tooltip": "Provide the major number of package.",
-                "description": "Provide the major number of package.",
+                "tooltip": "Specify major number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs.",
+                "description": "Major number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs.",
                 "type": "integer",
                 "required": true,
                 "editable": true,
@@ -789,8 +793,8 @@
               {
                 "title": "Minor Number",
                 "name": "minor",
-                "tooltip": "Provide the minor number of package.",
-                "description": "Provide the minor number of package.",
+                "tooltip": "Specify minor number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs.",
+                "description": "Minor number of the Malware Package or the URL Package to be used to retrieve the list of file hashes or URLs.",
                 "type": "integer",
                 "required": true,
                 "editable": true,
@@ -928,7 +932,7 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value (considering the indicator type you have chosen from the Indicator Type drop-down list) ",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to add to the whitelist or blacklist in Fortinet FortiSandbox.",
                 "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to add to the whitelist or blacklist in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
@@ -941,8 +945,8 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value (considering the indicator type you have chosen from the Indicator Type drop-down list)",
-                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to add to the whitelist or blacklist in Fortinet FortiSandbox.",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to replaced to the whitelist or blacklist in Fortinet FortiSandbox.",
+                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to replaced to the whitelist or blacklist in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
                 "editable": true,
@@ -954,8 +958,8 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value (considering the indicator type you have chosen from the Indicator Type drop-down list)",
-                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to add to the whitelist or blacklist in Fortinet FortiSandbox.",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to delete from the whitelist or blacklist in Fortinet FortiSandbox.",
+                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to delete from the whitelist or blacklist in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
                 "editable": true,

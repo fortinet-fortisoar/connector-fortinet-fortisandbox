@@ -79,7 +79,7 @@
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
-                  "condition": "{{(vars.result.data.result.data.finish_ts != 0)}}"
+                  "condition": "{{vars.result.data.result.data and vars.result.data.result.data.finish_ts != 0}}"
                 },
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_result_job",
@@ -1484,7 +1484,7 @@
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
-                  "condition": "{{(vars.result.data.result.data.finish_ts != 0)}}"
+                  "condition": "{{vars.result.data.result.data and vars.result.data.result.data.finish_ts != 0}}"
                 },
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_result_job",

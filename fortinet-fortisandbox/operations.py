@@ -64,26 +64,33 @@ def _check_health(config):
         logger.exception(str(err))
         raise ConnectorError('{0}'.format(err))
 
+def _download_file(iri):
+    try:
+        if iri.startswith('/api/3/attachments/'):
+            attachment_data = make_request(iri, 'GET')
+            file_iri = attachment_data['file']['@id']
+        else:
+           file_iri = iri
+        file_download_response = download_file_from_cyops(file_iri)
+        file_path = file_download_response['cyops_file_path']
+        file_name = file_download_response['filename']
+        logger.info('file id = %s, file_name = %s' % (file_iri, file_name))
+        return os.path.join(settings.TMP_FILE_ROOT, file_path), file_name
+    except Exception as err:
+        logger.exception(str(err))
+        raise ConnectorError('could not find attachment with id {}'.format(str(iri)))     
+
 
 def submit_file(config, params):
     forti = FortiSandbox(config)
     try:
-        file_iri, filename = handle_params(params)
-        dw_file_md = download_file_from_cyops(file_iri)
-        tmp_file_path = dw_file_md.get('cyops_file_path')
-        file_name = dw_file_md.get('filename')
-        if len(file_name) == 0 and len(tmp_file_path) > 0:
-            new_name = tmp_file_path.split('/')
-            if len(new_name) == 3:
-                file_name = new_name[2]
-            else:
-                file_name = tmp_file_path
-        file_path = os.path.join(settings.TMP_FILE_ROOT, tmp_file_path)
+        file_iri = params.get('attachment_iri')
+        file_path, file_name = _download_file(file_iri)
         with open(file_path, 'rb') as attachment:
             file_data = attachment.read()
 
         test_input = QUERY_SCHEMA.get('file_upload')
-        test_input = forti._load_file_for_upload(file_data, test_input, filename)
+        test_input = forti._load_file_for_upload(file_data, test_input, file_name)
         test_input['params'][0]['overwrite_vm_list'] = params['overwrite_vm_list']
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)

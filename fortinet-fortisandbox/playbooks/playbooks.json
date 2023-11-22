@@ -578,6 +578,7 @@
           "importedBy": [],
           "recordTags": [
             "Enrichment",
+            "URL_Enrichment",
             "ManualTrigger"
           ]
         },
@@ -1933,6 +1934,7 @@
           "importedBy": [],
           "recordTags": [
             "Enrichment",
+            "File_Enrichment",
             "ManualTrigger"
           ]
         },

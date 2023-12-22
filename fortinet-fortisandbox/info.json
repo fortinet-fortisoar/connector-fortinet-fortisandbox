@@ -622,11 +622,11 @@
           "name": "decode_file_string",
           "tooltip": "Provide the value of filehash (considering the filehash type you have chosen from the Hash Type drop-down list)",
           "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behaviour details you want to retrieve from Fortinet FortiSandbox.",
-          "type": "text",
-          "required": true,
+          "type": "checkbox",
+          "required": false,
           "editable": true,
           "visible": true,
-          "value": ""
+          "value": false
         }
       ],
       "output_schema": {

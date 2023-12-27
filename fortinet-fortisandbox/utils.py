@@ -393,7 +393,7 @@ class FortiSandbox:
             'time_out': 'The request timed out while trying to connect to the remote server',
             'ssl_error': 'SSL certificate validation failed'
         }
-        self.version = config.get("version")
+        self.version = str(config.get("version")) if config.get("version") else None
         self.session_id = self.login()
 
     def _load_file_for_upload(self, content, test_input, filename):
@@ -423,6 +423,10 @@ class FortiSandbox:
         @rtype: HttpResponse
         @return: JSON RPC response data.
         """
+
+        if self.version:
+            if data['ver'] >= '2.3':
+                data['params'][0].update(data['params'][0].pop('data', [{}])[0])
 
         try:
             response = requests.post(self.base_url, json=data, verify=self.verify_ssl)

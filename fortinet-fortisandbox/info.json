@@ -12,7 +12,7 @@
     "URL_Enrichment",
     "File_Enrichment"
   ],
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.0/fortinet-fortisandbox/688/fortinet-fortisandbox-v2-0-0",
+  "help_online": "",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "configuration": {
@@ -31,8 +31,8 @@
       {
         "name": "instance_type",
         "title": "Instance Type",
-        "tooltip": "Select whether you are using an on-premise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
-        "description": "Select the instance type from the following options: OnPremise, Cloud.",
+        "tooltip": "Select whether you are using an OnPremise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud,
+        "description": "Select whether you are using an OnPremise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
         "type": "select",
         "options": [
           "OnPremise",
@@ -90,7 +90,7 @@
         "editable": true,
         "visible": true,
         "placeholder": " For example, 4.0",
-        "description": "Specify the FortiSandBox version to which you will connect and perform automated operations.",
+        "description": "(Optional) Specify the FortiSandBox version to which you will connect and perform automated operations.",
         "tooltip": "Specify the FortiSandBox version to which you will connect and perform automated operations. For example, 4.0"
       },
       {
@@ -101,7 +101,7 @@
         "editable": true,
         "visible": true,
         "value": true,
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set to True.",
+        "description": "(Optional) Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set to True.",
         "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not."
       }
     ]
@@ -117,9 +117,9 @@
         {
           "name": "input_type",
           "title": "Indicator IRI/Attachment ID",
-          "tooltip": "File type support: 32bit and 64bit executable file, applies to all the Portable Executables (PE) files. Any text based file, such as HTML,VBA,VBS, JS, PDF, BAT, SH, PHP, XML, power shell scripts, archive formats like .tar, .gz, .tar.gz, .tgz, .zip, .bz2, .rar,office documents, PDFs are also supported.",
+          "tooltip": "Select whether you want to submit an Indicator IRI or an Attachment ID to Fortinet FortiSandbox.",
           "type": "select",
-          "description": "Select whether you want to submit an Indicator IRI or an Attachment ID to Fortinet FortiSandbox. Select from the following options: Indicator IRI, Attachment ID. Specify the ID of the attachment that you want to submit to Fortinet FortiSandbox, in the Attachment ID field. Attachment IRIs are used to access the file directly from the FortiSOAR™ Attachments module. NOTE: Following file types are supported: 32bit and 64bit executable files including all the Portable Executables (PE) files text-based file such as, HTML, VBA, VBS, JS, office documents, PDF, BAT, SH, PHP, XML PowerShell scripts archive formats like .tar, .gz, .tar.gz, .tgz, .zip, .bz2, and .rar",
+          "description": "Select whether you want to submit an Indicator IRI or an Attachment ID to Fortinet FortiSandbox. You can choose from Attachment ID or Indicator IRI.",
           "options": [
             "Attachment ID",
             "Indicator IRI"
@@ -378,7 +378,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "value": ""
+          "value": "",
+          "tooltip": "The ID of the job whose job verdict details you want to retrieve from Fortinet FortiSandbox."
         }
       ],
       "output_schema": {
@@ -621,7 +622,7 @@
           "title": "Decode Behaviour File String",
           "name": "decode_file_string",
           "tooltip": "Provide the value of filehash (considering the filehash type you have chosen from the Hash Type drop-down list)",
-          "description": "Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behaviour details you want to retrieve from Fortinet FortiSandbox.",
+          "description": "(Optional) Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behaviour details you want to retrieve from Fortinet FortiSandbox.",
           "type": "checkbox",
           "required": false,
           "editable": true,
@@ -745,6 +746,7 @@
           "title": "Query Type",
           "name": "qtype",
           "description": "Type of query to be used to retrieve the PDF report from Fortinet FortiSandbox. Note: Query type only supports SHA256 filehash.",
+          "tooltip": "Type of query to be used to retrieve the PDF report from Fortinet FortiSandbox. Note: Query type only supports SHA256 filehash.",
           "type": "text",
           "required": true,
           "editable": false,
@@ -862,7 +864,8 @@
           "required": true,
           "editable": true,
           "visible": true,
-          "value": ""
+          "value": "",
+          "tooltip": "Job ID that you want to mark as false negative or false positive in Fortinet FortiSandbox."
         },
         {
           "title": "Comments",

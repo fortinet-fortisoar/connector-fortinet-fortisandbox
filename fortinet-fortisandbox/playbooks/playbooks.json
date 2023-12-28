@@ -3,17 +3,13 @@
   "data": [
     {
       "@type": "WorkflowCollection",
-      "name": "Sample - Fortinet FortiSandbox - 2.0.0",
+      "name": "Sample - Fortinet FortiSandbox - 2.1.0",
       "description": "Sample playbooks for \"Fortinet FortiSandbox\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
       "visible": true,
-      "image": null,
-      "uuid": "3105b331-01e8-460c-8114-392c740a6e71",
-      "id": 55,
-      "deletedAt": null,
-      "importedBy": [],
+      "uuid": "a451e186-d0ed-4929-b7b9-efb0280d9ceb",
       "recordTags": [
-        "fortinet-fortisandbox",
-        "Fortinet"
+        "Fortinet",
+        "fortinet-fortisandbox"
       ],
       "workflows": [
         {
@@ -34,7 +30,7 @@
           ],
           "synchronous": false,
           "lastModifyDate": 1661332602,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/8b3ba0db-bb80-4482-9e67-c896079bca97",
           "steps": [
@@ -75,7 +71,7 @@
                 "params": {
                   "jid": "{% if vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0] is number %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0]}}{% else %}\"{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids}}\"{% endif %}"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -167,7 +163,7 @@
                   "timeout": 1200,
                   "overwrite_vm_list": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_urlfile",
                 "mock_result": "{\n  \"data\": {\n    \"id\": 12,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/alert/ondemand/submit-file\",\n      \"data\": {\n        \"msg\": \"File was submitted successfully\",\n        \"sid\": 6195803792602557000,\n        \"error\": \"\"\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
@@ -411,7 +407,7 @@
                 "params": {
                   "sid": "{% if vars.steps.Submit_URL.data.result.data.sid is number %}{{vars.steps.Submit_URL.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_URL.data.result.data.sid}}\"{% endif %}"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "do_until": {
                   "delay": 60,
                   "retries": 5,
@@ -583,673 +579,499 @@
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get URL Rating",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Get rating details for the URL you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7c729805-885a-447d-9665-46d9a533c673",
+          "uuid": "0fb9fd81-50c3-4ea0-ad7e-ce0874b4f659",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "56cd92a5-47de-4594-b34b-29c7a6981afc",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "c0443f57-829c-4242-8d8b-2bcfeec5973a",
               "@type": "WorkflowStep",
               "name": "Get URL Rating",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
                   "url": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_url_rating",
-                "operationTitle": "Get URL Rating",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get URL Rating"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "3ff85d60-8730-4b32-9265-75c719d66027"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "3c71a668-28c0-43da-9dc3-63814ee6c1fa",
-                "title": "Fortinet FortiSandbox: Get URL Rating",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "7c729805-885a-447d-9665-46d9a533c673"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Get rating details for the URL you have specified from Fortinet FortiSandbox.",
+          "name": "Get URL Rating",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/56cd92a5-47de-4594-b34b-29c7a6981afc",
           "routes": [
             {
+              "uuid": "e822e9c3-7de2-453c-a8f5-b47ee719efb5",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get URL Rating",
-              "targetStep": "/api/3/workflow_steps/3ff85d60-8730-4b32-9265-75c719d66027",
-              "sourceStep": "/api/3/workflow_steps/7c729805-885a-447d-9665-46d9a533c673",
               "label": null,
               "isExecuted": false,
-              "uuid": "1125d0c4-0829-4d91-97a7-25b76ac05d98"
+              "name": "Start-> Get URL Rating",
+              "sourceStep": "/api/3/workflow_steps/56cd92a5-47de-4594-b34b-29c7a6981afc",
+              "targetStep": "/api/3/workflow_steps/c0443f57-829c-4242-8d8b-2bcfeec5973a"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "1719a334-2ab7-4d14-9092-ab689b68b1a8",
-          "id": 775,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get File Rating",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves file rating for the file type and filehash you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/f62613a1-9b48-43f5-9a47-199768b1af24",
+          "uuid": "ea7bfa74-fe53-4770-8f61-ffa3957f9e2d",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "ccf4b27d-99b9-41f3-8ecc-ff3fcd565c43",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "cf65ef03-ec11-46dc-a688-57a8127d2ca5",
               "@type": "WorkflowStep",
               "name": "Get File Rating",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "file_hash": "",
-                  "hash_type": "SHA1"
+                  "hash_type": "SHA1",
+                  "file_hash": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_file_rating",
-                "operationTitle": "Get File Rating",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get File Rating"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "e6a8963c-c189-4b8d-aaf2-30745f8089ac"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "85fd42dc-e99b-42fa-b8f5-b062cfa114e0",
-                "title": "Fortinet FortiSandbox: Get File Rating",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "f62613a1-9b48-43f5-9a47-199768b1af24"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves file rating for the file type and filehash you have specified from Fortinet FortiSandbox.",
+          "name": "Get File Rating",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/ccf4b27d-99b9-41f3-8ecc-ff3fcd565c43",
           "routes": [
             {
+              "uuid": "07a40225-c03f-496f-8781-d5db2fd37180",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get File Rating",
-              "targetStep": "/api/3/workflow_steps/e6a8963c-c189-4b8d-aaf2-30745f8089ac",
-              "sourceStep": "/api/3/workflow_steps/f62613a1-9b48-43f5-9a47-199768b1af24",
               "label": null,
               "isExecuted": false,
-              "uuid": "27d523b0-493c-493d-be3e-d9d6a835487a"
+              "name": "Start-> Get File Rating",
+              "sourceStep": "/api/3/workflow_steps/ccf4b27d-99b9-41f3-8ecc-ff3fcd565c43",
+              "targetStep": "/api/3/workflow_steps/cf65ef03-ec11-46dc-a688-57a8127d2ca5"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "2224e154-7ddf-480b-bf67-e086ecd3b65c",
-          "id": 776,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Submit URL",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Submits a URL(s) to Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/f536f729-b417-493d-9999-3f9121da0ada",
+          "uuid": "cbf9af53-0d6b-4117-b6bf-7e3c01ed1eb3",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "39989be0-7ebb-4f45-a082-e1b063abcf47",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b0d0c022-f8a3-4155-9a77-e09d501c569c",
               "@type": "WorkflowStep",
               "name": "Submit URL",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
                   "url": "",
-                  "depth": true,
+                  "overwrite_vm_list": "",
                   "timeout": 60,
-                  "overwrite_vm_list": ""
+                  "depth": true
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_urlfile",
-                "operationTitle": "Submit URL",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Submit URL"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "c890e70b-bf71-414e-a00c-b1d51e95783f"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "abf2b6b6-dd4d-4d3e-ac64-cf20f3c95c57",
-                "title": "Fortinet FortiSandbox: Submit URL",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "f536f729-b417-493d-9999-3f9121da0ada"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Submits a URL(s) to Fortinet FortiSandbox.",
+          "name": "Submit URL",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/39989be0-7ebb-4f45-a082-e1b063abcf47",
           "routes": [
             {
+              "uuid": "d39f0250-8e8f-4b85-be2d-941fb1e2b142",
               "@type": "WorkflowRoute",
-              "name": "Start-> Submit URL",
-              "targetStep": "/api/3/workflow_steps/c890e70b-bf71-414e-a00c-b1d51e95783f",
-              "sourceStep": "/api/3/workflow_steps/f536f729-b417-493d-9999-3f9121da0ada",
               "label": null,
               "isExecuted": false,
-              "uuid": "06fd0df3-3b3b-4038-b194-e4bdd83ecc40"
+              "name": "Start-> Submit URL",
+              "sourceStep": "/api/3/workflow_steps/39989be0-7ebb-4f45-a082-e1b063abcf47",
+              "targetStep": "/api/3/workflow_steps/b0d0c022-f8a3-4155-9a77-e09d501c569c"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "2614d66d-ffda-48a0-9ac4-9ba4f271e533",
-          "id": 777,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get PDF Report",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves a PDF report from Fortinet FortiSandbox based on the query type and value parameter you have specified and creates an attachment in the FortiSOAR \"Attachment\" module if the report is found.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/26530177-bead-4d4a-9e6b-5675fe2919cf",
+          "uuid": "cb737df7-dcc0-4b34-a23c-6f3cfdab430b",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "f3509e6b-b4c7-4b49-8ace-cbea49f2e063",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "0893c884-df56-4a82-9f1d-a3705f1f8709",
-                "title": "Fortinet FortiSandbox: Get PDF Report",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "26530177-bead-4d4a-9e6b-5675fe2919cf"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "3b2fb68e-35d8-46c2-8481-4f8e5fc26170",
               "@type": "WorkflowStep",
               "name": "Get PDF Report",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "qval": "",
-                  "qtype": "sha256"
+                  "qtype": "sha256",
+                  "qval": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_pdf_report",
-                "operationTitle": "Get PDF Report",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get PDF Report"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "fd708624-775a-4373-8845-ef052d90db6c"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves a PDF report from Fortinet FortiSandbox based on the query type and value parameter you have specified and creates an attachment in the FortiSOAR\u2122 Attachment module if the report is found.",
+          "name": "Get PDF Report",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f3509e6b-b4c7-4b49-8ace-cbea49f2e063",
           "routes": [
             {
+              "uuid": "db6f0d7a-e6e1-4fbe-8ff3-e7e32e0107c3",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get PDF Report",
-              "targetStep": "/api/3/workflow_steps/fd708624-775a-4373-8845-ef052d90db6c",
-              "sourceStep": "/api/3/workflow_steps/26530177-bead-4d4a-9e6b-5675fe2919cf",
               "label": null,
               "isExecuted": false,
-              "uuid": "6a1c7eb5-7eb3-4c74-8216-875b8833cfa2"
+              "name": "Start-> Get PDF Report",
+              "sourceStep": "/api/3/workflow_steps/f3509e6b-b4c7-4b49-8ace-cbea49f2e063",
+              "targetStep": "/api/3/workflow_steps/3b2fb68e-35d8-46c2-8481-4f8e5fc26170"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "394b524a-3819-4188-b5be-8e84496ebcf3",
-          "id": 778,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Job Behavior",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves job behavior details associated with the file type and filehash you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/d0ef7c38-dde2-4d72-a9e7-7cbff9ed976f",
+          "uuid": "ed83767a-7e47-465d-8a0c-8b601206f485",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "abb3be13-cc42-4d90-a40c-b6a4cff423ff",
               "@type": "WorkflowStep",
-              "name": "Get Job Behavior",
+              "name": "Start",
               "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "9e1ce4bf-0683-4504-a136-bfd0a5976f5f",
+              "@type": "WorkflowStep",
+              "name": "Get Job Behaviour",
+              "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
+                  "hash_type": "SHA1",
                   "file_hash": "",
-                  "hash_type": "SHA1"
+                  "decode_file_string": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_job_behaviour",
-                "operationTitle": "Get Job Behavior",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get Job Behaviour"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "bfeaefe3-2c26-4af3-aa61-19df7d9165ad"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "0b6692c3-5f5f-4ee8-9ee0-9e9d231c390e",
-                "title": "Fortinet FortiSandbox: Get Job Behavior",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "d0ef7c38-dde2-4d72-a9e7-7cbff9ed976f"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves job behaviour details associated with the file type and filehash you have specified from Fortinet FortiSandbox.",
+          "name": "Get Job Behaviour",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/abb3be13-cc42-4d90-a40c-b6a4cff423ff",
           "routes": [
             {
+              "uuid": "77fc8fba-6186-489b-b57e-0e4c71db9035",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Job Behavior",
-              "targetStep": "/api/3/workflow_steps/bfeaefe3-2c26-4af3-aa61-19df7d9165ad",
-              "sourceStep": "/api/3/workflow_steps/d0ef7c38-dde2-4d72-a9e7-7cbff9ed976f",
               "label": null,
               "isExecuted": false,
-              "uuid": "819618a1-bb0d-4f4d-b119-93622f954144"
+              "name": "Start-> Get Job Behaviour",
+              "sourceStep": "/api/3/workflow_steps/abb3be13-cc42-4d90-a40c-b6a4cff423ff",
+              "targetStep": "/api/3/workflow_steps/9e1ce4bf-0683-4504-a136-bfd0a5976f5f"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "4c993acd-ea7c-4838-bf79-cdc998be9e08",
-          "id": 779,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get AV-Rescan Result",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves AV-Rescan results for the time duration you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/1f756101-c938-4fa1-85f8-124b5ebd335c",
+          "uuid": "649cd583-3b8c-44ee-a8fb-65cbb68c8de4",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "202ff31d-a974-4e0e-9d5e-df3876daf2b7",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "01d0ef15-75bb-414d-9926-d11e5da2c0e1",
-                "title": "Fortinet FortiSandbox: Get AV-Rescan Result",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "1f756101-c938-4fa1-85f8-124b5ebd335c"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "82d0b17d-eef4-4737-8a23-78dbcad0b91b",
               "@type": "WorkflowStep",
               "name": "Get AV-Rescan Result",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "etime": "",
                   "stime": "",
-                  "need_av_ver": false
+                  "etime": "",
+                  "need_av_ver": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_avrescan",
-                "operationTitle": "Get AV-Rescan Result",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get AV-Rescan Result"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "4f9f6992-eccb-47e3-95ba-5ad5f8f536dc"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves AV-Rescan results for the time duration you have specified from Fortinet FortiSandbox.",
+          "name": "Get AV-Rescan Result",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/202ff31d-a974-4e0e-9d5e-df3876daf2b7",
           "routes": [
             {
+              "uuid": "a3940db6-454c-4872-9ecd-fb3307f4a5b0",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get AV-Rescan Result",
-              "targetStep": "/api/3/workflow_steps/4f9f6992-eccb-47e3-95ba-5ad5f8f536dc",
-              "sourceStep": "/api/3/workflow_steps/1f756101-c938-4fa1-85f8-124b5ebd335c",
               "label": null,
               "isExecuted": false,
-              "uuid": "bf106276-1625-40eb-807e-b77b5caf3cde"
+              "name": "Start-> Get AV-Rescan Result",
+              "sourceStep": "/api/3/workflow_steps/202ff31d-a974-4e0e-9d5e-df3876daf2b7",
+              "targetStep": "/api/3/workflow_steps/82d0b17d-eef4-4737-8a23-78dbcad0b91b"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "512ec381-2112-4e8e-a09d-a996ca0bda2a",
-          "id": 780,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get System Status",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves the status of the system from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/7e49873a-0139-45ea-bc47-c67c6f3d5850",
+          "uuid": "872c8981-b882-4b20-8101-874de03a1568",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "567b9765-a5f1-456e-84ea-16f4fe18d13a",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "9c685683-5cd1-4991-9274-61b077634425",
-                "title": "Fortinet FortiSandbox: Get System Status",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "7e49873a-0139-45ea-bc47-c67c6f3d5850"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "9f39add0-124c-4ce1-8f6f-1bfbfbf2e83b",
               "@type": "WorkflowStep",
               "name": "Get System Status",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": [],
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_system_status",
-                "operationTitle": "Get System Status",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get System Status"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "cfe5fc92-cc22-4cff-9e8e-fc63aef9d967"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves the status of the system from Fortinet FortiSandbox.",
+          "name": "Get System Status",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/567b9765-a5f1-456e-84ea-16f4fe18d13a",
           "routes": [
             {
+              "uuid": "c039a739-83b7-40c6-abd3-4f314ead5bac",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get System Status",
-              "targetStep": "/api/3/workflow_steps/cfe5fc92-cc22-4cff-9e8e-fc63aef9d967",
-              "sourceStep": "/api/3/workflow_steps/7e49873a-0139-45ea-bc47-c67c6f3d5850",
               "label": null,
               "isExecuted": false,
-              "uuid": "fe28a3e0-56a9-4141-8898-156821b32811"
+              "name": "Start-> Get System Status",
+              "sourceStep": "/api/3/workflow_steps/567b9765-a5f1-456e-84ea-16f4fe18d13a",
+              "targetStep": "/api/3/workflow_steps/9f39add0-124c-4ce1-8f6f-1bfbfbf2e83b"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "8bfabe42-1186-40b2-a32d-9b542a289517",
-          "id": 781,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
@@ -1270,111 +1092,66 @@
           ],
           "synchronous": false,
           "lastModifyDate": 1696332039,
-          "collection": "/api/3/workflow_collections/4dc865c8-012e-4326-8be5-252b723ea734",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "versions": [],
           "triggerStep": "/api/3/workflow_steps/2fbaa5ea-cd9d-4e60-8701-e309b50a9933",
           "steps": [
             {
               "@type": "WorkflowStep",
-              "name": "Get Scan Status of Submitted File",
+              "name": "Compute File Hash",
               "description": null,
               "arguments": {
-                "name": "Fortinet FortiSandbox",
-                "config": "",
                 "params": {
-                  "sid": "{% if vars.steps.Submit_File.data.result.data.sid is number %}{{vars.steps.Submit_File.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_File.data.result.data.sid}}\"{% endif %}"
+                  "iri": "{{vars.indicator_value}}"
                 },
-                "version": "2.0.0",
-                "do_until": {
-                  "delay": 60,
-                  "retries": 5,
-                  "condition": "{{vars.result.data.result.data.jids | length > 0}}"
-                },
-                "connector": "fortinet-fortisandbox",
-                "operation": "get_submission_job_list",
-                "mock_result": "{\n  \"data\": {\n    \"id\": 17,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/scan/result/get-jobs-of-submission\",\n      \"data\": {\n        \"jids\": [\n          6195907466833179000\n        ],\n        \"total_jids\": 1\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
-                "operationTitle": "Get Submission Job List",
-                "step_variables": {
-                  "job_id": "{{vars.result.data.result.data.jids[0]}}"
-                }
-              },
-              "status": null,
-              "top": "640",
-              "left": "440",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "e157fa42-6ae5-4511-8c1a-01554d7deae3"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Update Sandbox Summary",
-              "description": null,
-              "arguments": {
-                "resource": {
-                  "reputation": "{{(\"IndicatorReputation\" | picklist(vars.verdict))[\"@id\"]}}",
-                  "description": "{% if vars.steps.Find_Existing_Description[0].description %}{{vars.steps.Find_Existing_Description[0].description}}{% endif %}<br>{{vars.steps.Compute_FortiSandbox_Summary.data['formatted_string']}}"
-                },
-                "operation": "Append",
-                "collection": "{{vars.indicator_IRI}}",
-                "__recommend": [],
-                "collectionType": "/api/3/indicators",
-                "fieldOperation": {
-                  "recordTags": "Append"
-                },
+                "version": "3.2.5",
+                "connector": "cyops_utilities",
+                "operation": "download_file_from_cyops",
+                "ignore_errors": true,
+                "operationTitle": "File: Compute Hash",
                 "step_variables": []
               },
               "status": null,
-              "top": "1820",
-              "left": "100",
-              "stepType": "/api/3/workflow_step_types/b593663d-7d13-40ce-a3a3-96dece928722",
+              "top": "435",
+              "left": "403",
+              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
               "group": null,
-              "uuid": "c62d2f42-9657-4d2a-bc9d-06b6aade6fc9"
+              "uuid": "3f49ba44-bf9b-4f29-83bc-252cca6cc360"
             },
             {
               "@type": "WorkflowStep",
-              "name": "Return Output Data",
+              "name": "Compute FortiSandbox Summary",
               "description": null,
               "arguments": {
-                "verdict": "{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score %}{{\"Malicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}{{\"Suspicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}{{\"Good\"}}{% else %}{{\"No Reputation Available\"}}{% endif %}",
-                "cti_name": "VirusTotal",
-                "cti_score": "{{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}",
-                "source_data": "{ \"FortiSandBox\":{{vars.steps.Get_Details_of_Submitted_File.data.result.data}} }",
-                "field_mapping": "{\"filehashSHA1\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['sha1'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['sha1']}}\"{% else %}{{None}}{% endif %}, \"filehashSHA256\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['sha256'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['sha256']}}\"{% else %}{{None}}{% endif %}, \"infected_os\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['infected_os'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['infected_os']}}\"{% else %}{{None}}{% endif %},\"detection_os\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['detection_os'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['detection_os']}}\"{% else %}{{None}}{% endif %} }",
-                "enrichment_summary": "{{vars.steps.Compute_FortiSandbox_Summary.data['formatted_string']}}"
+                "params": {
+                  "value": "<table class=\"no-border\">\n    <tr>\n        <th colspan=\"5\" class=\"no-background padding-0\">\n            <div class=\"font-size-11 ng-binding padding-bottom-sm\">\n                <h4 style=\"color: orange;\"\n                    class=\"body-default-bgcolor margin-bottom-0 padding-bottom-md padding-left-md padding-top-md text-align-left\">\n                    Fortinet FortiSandbox Summary</h4>\n            </div>\n        </th>\n    </tr>\n    <tr class=\"solid-border\">\n        <td>\n            <div small class=\"control-label\">Score</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: 100px;\">\n                <div>{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score  %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Malicious}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Suspicious}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}</div>\n                    <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Good}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% else %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors['No Reputation Available']}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% endif %}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Rating</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div>{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.rating in [\"Malicious\", \"High Risk\"]  %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Malicious}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.rating in [\"Medium Risk\", \"Low Risk\"] %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Suspicious}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.rating == \"Clean\" %}</div>\n                    <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Good}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% else %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors['No Reputation Available']}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% endif %}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Rating Source</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating_source}}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Category</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.category}}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Malware Name</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.malware_name}}</div>\n            </div>\n        </td>\n    </tr>\n</table>\n<table class=\"margin-top-sm  no-border\">\n    <tr class=\"solid-border\">\n        <td style=\"vertical-align: top;\">\n            <div class=\"half-width\" style=\"vertical-align: top;\"></div>\n            <div class=\"control-label padding-left-sm padding-bottom-sm\">Additional Summary:</div>\n            <div>{{vars.steps.Convert_Summary_to_HTML.data}}</div>\n        </td>\n    </tr>\n</table>"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": []
               },
               "status": null,
-              "top": "1420",
-              "left": "660",
+              "top": "1245",
+              "left": "228",
+              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+              "group": null,
+              "uuid": "ee82873b-142c-4251-8e6e-a24dcb9daefa"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Compute Verdict",
+              "description": null,
+              "arguments": {
+                "verdict": "{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score %}{{\"Malicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}{{\"Suspicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}{{\"Good\"}}{% else %}{{\"No Reputation Available\"}}{% endif %}"
+              },
+              "status": null,
+              "top": "1515",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
               "group": null,
-              "uuid": "a41980ad-57b4-42db-90af-1e9e529ed46c"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Is Connector Health Check Available",
-              "description": null,
-              "arguments": {
-                "conditions": [
-                  {
-                    "option": "Yes",
-                    "step_iri": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
-                    "condition": "{{ vars.steps.Submit_File.status == \"Success\" or vars.useMockOutput }}",
-                    "step_name": "Get Scan Status of Submitted File"
-                  },
-                  {
-                    "option": "No",
-                    "default": true,
-                    "step_iri": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
-                    "step_name": "No Operation"
-                  }
-                ]
-              },
-              "status": null,
-              "top": "640",
-              "left": "860",
-              "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-              "group": null,
-              "uuid": "34d1f02c-b2a3-4a16-9685-4391440a3ca5"
+              "uuid": "1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200"
             },
             {
               "@type": "WorkflowStep",
@@ -1392,196 +1169,10 @@
               },
               "status": null,
               "top": "165",
-              "left": "475",
+              "left": "588",
               "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
               "group": null,
               "uuid": "6cc50b8c-9e16-4ac3-9cba-4a21dd38708d"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Submit File",
-              "description": null,
-              "arguments": {
-                "name": "Fortinet FortiSandbox",
-                "config": "",
-                "params": {
-                  "input_type": "Indicator IRI",
-                  "indicator_iri": "{{vars.indicator_value}}",
-                  "overwrite_vm_list": ""
-                },
-                "version": "2.0.0",
-                "connector": "fortinet-fortisandbox",
-                "operation": "submit_file",
-                "mock_result": "{\n  \"data\": {\n    \"id\": 11,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/alert/ondemand/submit-file\",\n      \"data\": {\n        \"msg\": \"File was submitted successfully\",\n        \"sid\": \"6195907427360919950\",\n        \"error\": \"\"\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
-                "ignore_errors": true,
-                "operationTitle": "Submit File",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "440",
-              "left": "860",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "1c7870d9-c905-48f7-9848-ec02acc495a3"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "No Operation",
-              "description": null,
-              "arguments": {
-                "params": [],
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "975",
-              "left": "733",
-              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-              "group": null,
-              "uuid": "09da8c05-f149-4fa9-9337-c825ad9fde5a"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Is Referenced Playbook",
-              "description": null,
-              "arguments": {
-                "conditions": [
-                  {
-                    "option": "Yes",
-                    "step_iri": "/api/3/workflow_steps/a41980ad-57b4-42db-90af-1e9e529ed46c",
-                    "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
-                    "step_name": "Return Output Data"
-                  },
-                  {
-                    "option": "No",
-                    "default": true,
-                    "step_iri": "/api/3/workflow_steps/1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200",
-                    "step_name": "Compute Verdict"
-                  }
-                ]
-              },
-              "status": null,
-              "top": "1420",
-              "left": "100",
-              "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-              "group": null,
-              "uuid": "72e86b39-429f-4d13-bc02-685423965055"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Get Details of Submitted File",
-              "description": null,
-              "arguments": {
-                "name": "Fortinet FortiSandbox",
-                "config": "",
-                "params": {
-                  "jid": "{{vars.job_id}}"
-                },
-                "version": "2.0.0",
-                "do_until": {
-                  "delay": 60,
-                  "retries": 5,
-                  "condition": "{{vars.result.data.result.data and vars.result.data.result.data.finish_ts != 0}}"
-                },
-                "connector": "fortinet-fortisandbox",
-                "operation": "get_scan_result_job",
-                "mock_result": "{\n  \"data\": {\n    \"id\": 10,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/scan/result/job\",\n      \"data\": {\n        \"jid\": \"6195917973217292123\",\n        \"now\": 1660649952,\n        \"vid\": 0,\n        \"sha1\": \"b541a5a4589b399eb14257612149226e96bfa273\",\n        \"score\": 4,\n        \"rating\": \"Low Risk\",\n        \"sha256\": \"b97e9fdfd8014142f8098a821aa1d98f4aa04dbefed166f2c8f534ac687d5f66\",\n        \"category\": \"Riskware\",\n        \"start_ts\": 1660649893,\n        \"finish_ts\": 1660649898,\n        \"untrusted\": 0,\n        \"detail_url\": \"https://fortisandbox-fortisoar.in/job-detail/?sid=6195917936158345809&jid=6195917973217292123&req_type=file-csearch\",\n        \"infected_os\": \"\",\n        \"detection_os\": \"\",\n        \"download_url\": \"VXJnZW50IFJlcXVlc3RpbmcgQ0VPIExldmVsIERlbW8gRW52aXJvbm1lbnQgKDEpLm1zZwo=\",\n        \"malware_name\": \"N/A\",\n        \"rating_source\": \"Static File Scan\",\n        \"false_positive_negative\": 0\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
-                "operationTitle": "Get Job Verdict Detail",
-                "step_variables": {
-                  "data": "{{vars.result.data.result.data}}"
-                }
-              },
-              "status": null,
-              "top": "980",
-              "left": "100",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "00ba4d35-6b64-4e0c-b9a8-122526abfaba"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Compute Verdict",
-              "description": null,
-              "arguments": {
-                "verdict": "{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score %}{{\"Malicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}{{\"Suspicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}{{\"Good\"}}{% else %}{{\"No Reputation Available\"}}{% endif %}"
-              },
-              "status": null,
-              "top": "1540",
-              "left": "100",
-              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-              "group": null,
-              "uuid": "1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "4150c1f6-b1b9-4ab0-b5a8-ef1cce6ce1cb",
-                "resources": [
-                  "indicators"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "params": [],
-                    "records": "{{vars.input.records}}"
-                  }
-                },
-                "displayConditions": {
-                  "indicators": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                      {
-                        "type": "object",
-                        "field": "typeofindicator",
-                        "value": "/api/3/picklists/0162241b-f5bf-4917-a150-00e920be47bd",
-                        "_value": {
-                          "@id": "/api/3/picklists/0162241b-f5bf-4917-a150-00e920be47bd",
-                          "display": "File",
-                          "itemValue": "File"
-                        },
-                        "operator": "eq"
-                      }
-                    ]
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": false,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "30",
-              "left": "475",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "2fbaa5ea-cd9d-4e60-8701-e309b50a9933"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Compute FortiSandbox Summary",
-              "description": null,
-              "arguments": {
-                "params": {
-                  "value": "<table class=\"no-border\">\n    <tr>\n        <th colspan=\"5\" class=\"no-background padding-0\">\n            <div class=\"font-size-11 ng-binding padding-bottom-sm\">\n                <h4 style=\"color: orange;\"\n                    class=\"body-default-bgcolor margin-bottom-0 padding-bottom-md padding-left-md padding-top-md text-align-left\">\n                    Fortinet FortiSandbox Summary</h4>\n            </div>\n        </th>\n    </tr>\n    <tr class=\"solid-border\">\n        <td>\n            <div small class=\"control-label\">Score</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: 100px;\">\n                <div>{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score  %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Malicious}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Suspicious}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}</div>\n                    <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Good}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% else %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors['No Reputation Available']}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}</div>\n                <div>{% endif %}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Rating</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div>{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.rating in [\"Malicious\", \"High Risk\"]  %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Malicious}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.rating in [\"Medium Risk\", \"Low Risk\"] %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Suspicious}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.rating == \"Clean\" %}</div>\n                    <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors.Good}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% else %}</div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.style_colors['No Reputation Available']}};padding: 11px;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating}}</div>\n                <div>{% endif %}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Rating Source</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.rating_source}}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Category</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.category}}</div>\n            </div>\n        </td>\n        <td>\n            <div small class=\"control-label\">Malware Name</div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div class=\"text-capitalize body-default-bgcolor card-number padding-left-md solid-border\"\n                    style=\"padding: 13px;border-left-width: 1px;border-left-color: #dcdcdc;font-size: 15px !important;\">\n                    {{vars.steps.Get_Details_of_Submitted_File.data.result.data.malware_name}}</div>\n            </div>\n        </td>\n    </tr>\n</table>\n<table class=\"margin-top-sm  no-border\">\n    <tr class=\"solid-border\">\n        <td style=\"vertical-align: top;\">\n            <div class=\"half-width\" style=\"vertical-align: top;\"></div>\n            <div class=\"control-label padding-left-sm padding-bottom-sm\">Additional Summary:</div>\n            <div>{{vars.steps.Convert_Summary_to_HTML.data}}</div>\n        </td>\n    </tr>\n</table>"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "format_richtext",
-                "operationTitle": "Utils: Format as RichText",
-                "step_variables": []
-              },
-              "status": null,
-              "top": "1300",
-              "left": "100",
-              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-              "group": null,
-              "uuid": "ee82873b-142c-4251-8e6e-a24dcb9daefa"
             },
             {
               "@type": "WorkflowStep",
@@ -1602,8 +1193,8 @@
                 "step_variables": []
               },
               "status": null,
-              "top": "1160",
-              "left": "100",
+              "top": "1110",
+              "left": "228",
               "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
               "group": null,
               "uuid": "3cf77532-14b3-4835-9a71-e4aaf5b429e5"
@@ -1635,59 +1226,161 @@
                 "step_variables": []
               },
               "status": null,
-              "top": "1680",
-              "left": "100",
+              "top": "1650",
+              "left": "125",
               "stepType": "/api/3/workflow_step_types/b593663d-7d13-40ce-a3a3-96dece928770",
               "group": null,
               "uuid": "088748cb-b017-47f6-89e6-1b3987eb2f0c"
             },
             {
               "@type": "WorkflowStep",
-              "name": "Is Job ID Created",
+              "name": "Get Details of Submitted File",
+              "description": null,
+              "arguments": {
+                "name": "Fortinet FortiSandbox",
+                "config": "",
+                "params": {
+                  "jid": "{{vars.job_id}}"
+                },
+                "version": "2.1.0",
+                "do_until": {
+                  "delay": 60,
+                  "retries": 5,
+                  "condition": "{{vars.result.data.result.data and vars.result.data.result.data.finish_ts != 0}}"
+                },
+                "connector": "fortinet-fortisandbox",
+                "operation": "get_scan_result_job",
+                "mock_result": "{\n  \"data\": {\n    \"id\": 10,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/scan/result/job\",\n      \"data\": {\n        \"jid\": \"6195917973217292123\",\n        \"now\": 1660649952,\n        \"vid\": 0,\n        \"sha1\": \"b541a5a4589b399eb14257612149226e96bfa273\",\n        \"score\": 4,\n        \"rating\": \"Low Risk\",\n        \"sha256\": \"b97e9fdfd8014142f8098a821aa1d98f4aa04dbefed166f2c8f534ac687d5f66\",\n        \"category\": \"Riskware\",\n        \"start_ts\": 1660649893,\n        \"finish_ts\": 1660649898,\n        \"untrusted\": 0,\n        \"detail_url\": \"https://fortisandbox-fortisoar.in/job-detail/?sid=6195917936158345809&jid=6195917973217292123&req_type=file-csearch\",\n        \"infected_os\": \"\",\n        \"detection_os\": \"\",\n        \"download_url\": \"VXJnZW50IFJlcXVlc3RpbmcgQ0VPIExldmVsIERlbW8gRW52aXJvbm1lbnQgKDEpLm1zZwo=\",\n        \"malware_name\": \"N/A\",\n        \"rating_source\": \"Static File Scan\",\n        \"false_positive_negative\": 0\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Get Job Verdict Detail",
+                "step_variables": {
+                  "data": "{{vars.result.data.result.data}}"
+                }
+              },
+              "status": null,
+              "top": "975",
+              "left": "228",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "00ba4d35-6b64-4e0c-b9a8-122526abfaba"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get File Verdict",
+              "description": null,
+              "arguments": {
+                "name": "Fortinet FortiSandbox",
+                "config": "",
+                "params": {
+                  "file_hash": "{{vars.steps.Compute_File_Hash.data.md5}}",
+                  "hash_type": "MD5"
+                },
+                "version": "2.1.0",
+                "do_until": {
+                  "delay": 60,
+                  "retries": 5,
+                  "condition": "{{vars.result.data.result.data[0]['job_list'] | length > 0}}"
+                },
+                "connector": "fortinet-fortisandbox",
+                "operation": "get_file_verdict",
+                "ignore_errors": false,
+                "operationTitle": "Get File Verdict",
+                "pickFromTenant": false,
+                "step_variables": {
+                  "job_id": "{{vars.result.data.result.data[0]['job_list'][0].jid}}"
+                }
+              },
+              "status": null,
+              "top": "705",
+              "left": "238",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "de714a70-5dd0-4be5-8215-4b54aea401e6"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Scan Status of Submitted File",
+              "description": null,
+              "arguments": {
+                "name": "Fortinet FortiSandbox",
+                "config": "",
+                "params": {
+                  "sid": "{% if vars.steps.Submit_File.data.result.data.sid is number %}{{vars.steps.Submit_File.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_File.data.result.data.sid}}\"{% endif %}"
+                },
+                "version": "2.1.0",
+                "do_until": {
+                  "delay": 60,
+                  "retries": 5,
+                  "condition": "{{vars.result.data.result.data.jids | length > 0}}"
+                },
+                "connector": "fortinet-fortisandbox",
+                "operation": "get_submission_job_list",
+                "mock_result": "{\n  \"data\": {\n    \"id\": 17,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/scan/result/get-jobs-of-submission\",\n      \"data\": {\n        \"jids\": [\n          6195907466833179000\n        ],\n        \"total_jids\": 1\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "operationTitle": "Get Submission Job List",
+                "step_variables": {
+                  "job_id": "{{vars.result.data.result.data.jids[0]}}"
+                }
+              },
+              "status": null,
+              "top": "880",
+              "left": "980",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "e157fa42-6ae5-4511-8c1a-01554d7deae3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Is Connector Health Check Available",
               "description": null,
               "arguments": {
                 "conditions": [
+                  {
+                    "option": "Yes",
+                    "step_iri": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
+                    "condition": "{{ vars.steps.Submit_File.status == \"Success\" or vars.useMockOutput }}",
+                    "step_name": "Get Scan Status of Submitted File"
+                  },
                   {
                     "option": "No",
                     "default": true,
                     "step_iri": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
                     "step_name": "No Operation"
-                  },
-                  {
-                    "option": "Yes",
-                    "step_iri": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
-                    "condition": "{{ vars.job_id is number }}",
-                    "step_name": "Get Details of Submitted File"
                   }
                 ]
               },
               "status": null,
-              "top": "840",
-              "left": "440",
+              "top": "570",
+              "left": "865",
               "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
               "group": null,
-              "uuid": "f86ac6b8-6881-436b-af90-788bd6e4488b"
+              "uuid": "34d1f02c-b2a3-4a16-9685-4391440a3ca5"
             },
             {
               "@type": "WorkflowStep",
-              "name": "Compute File Hash",
+              "name": "Is File Hash Calculated",
               "description": null,
               "arguments": {
-                "params": {
-                  "iri": "{{vars.indicator_value}}"
-                },
-                "version": "3.2.4",
-                "connector": "cyops_utilities",
-                "operation": "download_file_from_cyops",
-                "operationTitle": "File: Compute Hash",
+                "conditions": [
+                  {
+                    "option": "Yes",
+                    "step_iri": "/api/3/workflow_steps/de714a70-5dd0-4be5-8215-4b54aea401e6",
+                    "condition": "{{ vars.steps.Compute_File_Hash.status == 'Success' }}",
+                    "step_name": "Get File Verdict"
+                  },
+                  {
+                    "option": "No",
+                    "default": true,
+                    "step_iri": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
+                    "step_name": "No Operation"
+                  }
+                ],
                 "step_variables": []
               },
               "status": null,
-              "top": "440",
-              "left": "60",
-              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+              "top": "570",
+              "left": "403",
+              "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
               "group": null,
-              "uuid": "3f49ba44-bf9b-4f29-83bc-252cca6cc360"
+              "uuid": "ba275eeb-8ef0-4d88-b06d-13fbdd01f89c"
             },
             {
               "@type": "WorkflowStep",
@@ -1712,71 +1405,227 @@
               },
               "status": null,
               "top": "300",
-              "left": "475",
+              "left": "588",
               "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
               "group": null,
               "uuid": "81104b75-4bc2-4ef6-8024-48a36560ea67"
             },
             {
               "@type": "WorkflowStep",
-              "name": "Get File Verdict",
+              "name": "Is Job ID Created",
+              "description": null,
+              "arguments": {
+                "conditions": [
+                  {
+                    "option": "No",
+                    "default": true,
+                    "step_iri": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
+                    "step_name": "No Operation"
+                  },
+                  {
+                    "option": "Yes",
+                    "step_iri": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
+                    "condition": "{{ vars.job_id is number }}",
+                    "step_name": "Get Details of Submitted File"
+                  }
+                ]
+              },
+              "status": null,
+              "top": "840",
+              "left": "238",
+              "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+              "group": null,
+              "uuid": "f86ac6b8-6881-436b-af90-788bd6e4488b"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Is Referenced Playbook",
+              "description": null,
+              "arguments": {
+                "conditions": [
+                  {
+                    "option": "Yes",
+                    "step_iri": "/api/3/workflow_steps/a41980ad-57b4-42db-90af-1e9e529ed46c",
+                    "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
+                    "step_name": "Return Output Data"
+                  },
+                  {
+                    "option": "No",
+                    "default": true,
+                    "step_iri": "/api/3/workflow_steps/1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200",
+                    "step_name": "Compute Verdict"
+                  }
+                ]
+              },
+              "status": null,
+              "top": "1380",
+              "left": "228",
+              "stepType": "/api/3/workflow_step_types/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+              "group": null,
+              "uuid": "72e86b39-429f-4d13-bc02-685423965055"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "No Operation",
+              "description": null,
+              "arguments": {
+                "params": [],
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+              },
+              "status": null,
+              "top": "720",
+              "left": "600",
+              "stepType": "/api/3/workflow_step_types/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+              "group": null,
+              "uuid": "09da8c05-f149-4fa9-9337-c825ad9fde5a"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Return Output Data",
+              "description": null,
+              "arguments": {
+                "verdict": "{% if vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.malicious_score %}{{\"Malicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score in vars.suspicious_score %}{{\"Suspicious\"}}{% elif vars.steps.Get_Details_of_Submitted_File.data.result.data.score == vars.good_score %}{{\"Good\"}}{% else %}{{\"No Reputation Available\"}}{% endif %}",
+                "cti_name": "VirusTotal",
+                "cti_score": "{{vars.steps.Get_Details_of_Submitted_File.data.result.data.score}}",
+                "source_data": "{ \"FortiSandBox\":{{vars.steps.Get_Details_of_Submitted_File.data.result.data}} }",
+                "field_mapping": "{\"filehashSHA1\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['sha1'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['sha1']}}\"{% else %}{{None}}{% endif %}, \"filehashSHA256\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['sha256'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['sha256']}}\"{% else %}{{None}}{% endif %}, \"infected_os\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['infected_os'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['infected_os']}}\"{% else %}{{None}}{% endif %},\"detection_os\": {% if vars.steps.Get_Details_of_Submitted_File.data.result.data['detection_os'] %}\"{{vars.steps.Get_Details_of_Submitted_File.data.result.data['detection_os']}}\"{% else %}{{None}}{% endif %} }",
+                "enrichment_summary": "{{vars.steps.Compute_FortiSandbox_Summary.data['formatted_string']}}"
+              },
+              "status": null,
+              "top": "1515",
+              "left": "475",
+              "stepType": "/api/3/workflow_step_types/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+              "group": null,
+              "uuid": "a41980ad-57b4-42db-90af-1e9e529ed46c"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4150c1f6-b1b9-4ab0-b5a8-ef1cce6ce1cb",
+                "resources": [
+                  "indicators"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "displayConditions": {
+                  "indicators": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                      {
+                        "type": "object",
+                        "field": "typeofindicator",
+                        "value": "/api/3/picklists/0162241b-f5bf-4917-a150-00e920be47bd",
+                        "_value": {
+                          "@id": "/api/3/picklists/0162241b-f5bf-4917-a150-00e920be47bd",
+                          "display": "File",
+                          "itemValue": "File"
+                        },
+                        "operator": "eq"
+                      },
+                      {
+                        "type": "primitive",
+                        "field": "file",
+                        "value": "false",
+                        "operator": "isnull",
+                        "_operator": "isnull"
+                      }
+                    ]
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "30",
+              "left": "588",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "2fbaa5ea-cd9d-4e60-8701-e309b50a9933"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Submit File",
               "description": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "file_hash": "{{vars.steps.Compute_File_Hash.data.md5}}",
-                  "hash_type": "MD5"
+                  "input_type": "Indicator IRI",
+                  "indicator_iri": "{{vars.indicator_value}}",
+                  "overwrite_vm_list": ""
                 },
-                "version": "2.0.0",
-                "do_until": {
-                  "delay": 60,
-                  "retries": 5,
-                  "condition": "{{vars.result.data.result.data[0]['job_list'] | length > 0}}"
-                },
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
-                "operation": "get_file_verdict",
-                "operationTitle": "Get File Verdict",
-                "pickFromTenant": false,
-                "step_variables": {
-                  "job_id": "{{vars.result.data.result.data[0]['job_list'][0].jid}}"
-                }
+                "operation": "submit_file",
+                "mock_result": "{\n  \"data\": {\n    \"id\": 11,\n    \"ver\": \"2.1\",\n    \"result\": {\n      \"url\": \"/alert/ondemand/submit-file\",\n      \"data\": {\n        \"msg\": \"File was submitted successfully\",\n        \"sid\": \"6195907427360919950\",\n        \"error\": \"\"\n      },\n      \"status\": {\n        \"code\": 0,\n        \"message\": \"OK\"\n      }\n    }\n  },\n  \"status\": \"Success\",\n  \"message\": \"\",\n  \"operation\": null\n}",
+                "ignore_errors": true,
+                "operationTitle": "Submit File",
+                "step_variables": []
               },
               "status": null,
-              "top": "660",
-              "left": "60",
+              "top": "435",
+              "left": "865",
               "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
               "group": null,
-              "uuid": "de714a70-5dd0-4be5-8215-4b54aea401e6"
+              "uuid": "1c7870d9-c905-48f7-9848-ec02acc495a3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Sandbox Summary",
+              "description": null,
+              "arguments": {
+                "resource": {
+                  "reputation": "{{(\"IndicatorReputation\" | picklist(vars.verdict))[\"@id\"]}}",
+                  "description": "{% if vars.steps.Find_Existing_Description[0].description %}{{vars.steps.Find_Existing_Description[0].description}}{% endif %}<br>{{vars.steps.Compute_FortiSandbox_Summary.data['formatted_string']}}"
+                },
+                "operation": "Append",
+                "collection": "{{vars.indicator_IRI}}",
+                "__recommend": [],
+                "collectionType": "/api/3/indicators",
+                "fieldOperation": {
+                  "recordTags": "Append"
+                },
+                "step_variables": []
+              },
+              "status": null,
+              "top": "1785",
+              "left": "125",
+              "stepType": "/api/3/workflow_step_types/b593663d-7d13-40ce-a3a3-96dece928722",
+              "group": null,
+              "uuid": "c62d2f42-9657-4d2a-bc9d-06b6aade6fc9"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "name": "Get Scan Status of Submitted File -> Is Job ID Created",
-              "targetStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
-              "sourceStep": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
+              "name": "Compute File Hash -> Is File Hash Calculated",
+              "targetStep": "/api/3/workflow_steps/ba275eeb-8ef0-4d88-b06d-13fbdd01f89c",
+              "sourceStep": "/api/3/workflow_steps/3f49ba44-bf9b-4f29-83bc-252cca6cc360",
               "label": null,
               "isExecuted": false,
-              "uuid": "5186af29-5ba6-48fc-a1a6-3284cdda3b1e"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Start -> Configuration",
-              "targetStep": "/api/3/workflow_steps/6cc50b8c-9e16-4ac3-9cba-4a21dd38708d",
-              "sourceStep": "/api/3/workflow_steps/2fbaa5ea-cd9d-4e60-8701-e309b50a9933",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "3a55fff9-dadc-4506-a6b5-952c74566310"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get Details of Submitted File -> Convert Summary to HTML",
-              "targetStep": "/api/3/workflow_steps/3cf77532-14b3-4835-9a71-e4aaf5b429e5",
-              "sourceStep": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "4219479d-2a34-4c1b-9ba0-76e8016c03f2"
+              "group": null,
+              "uuid": "9304faf6-f4b6-4f13-86a2-c1a68a28b4f0"
             },
             {
               "@type": "WorkflowRoute",
@@ -1785,16 +1634,8 @@
               "sourceStep": "/api/3/workflow_steps/ee82873b-142c-4251-8e6e-a24dcb9daefa",
               "label": null,
               "isExecuted": false,
+              "group": null,
               "uuid": "da82b269-505d-4095-a58d-234f3283aa43"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Find Existing Description -> Update Sandbox Summary",
-              "targetStep": "/api/3/workflow_steps/c62d2f42-9657-4d2a-bc9d-06b6aade6fc9",
-              "sourceStep": "/api/3/workflow_steps/088748cb-b017-47f6-89e6-1b3987eb2f0c",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "b8b9798a-6ab9-43c5-bf73-ccaff2293493"
             },
             {
               "@type": "WorkflowRoute",
@@ -1803,97 +1644,8 @@
               "sourceStep": "/api/3/workflow_steps/1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200",
               "label": null,
               "isExecuted": false,
+              "group": null,
               "uuid": "e64a327f-ca43-4bd9-bb27-dd1b43bdd060"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Submit URL -> Is Reputation Found",
-              "targetStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
-              "sourceStep": "/api/3/workflow_steps/1c7870d9-c905-48f7-9848-ec02acc495a3",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "84154cfe-2b82-46f8-b2f2-215f0e4f3620"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Reputation Found -> Get Scan Status of Submitted File",
-              "targetStep": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
-              "sourceStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
-              "label": "Yes",
-              "isExecuted": false,
-              "uuid": "e264b0d0-7716-4348-9c86-2db6e23c9f8f"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Convert Summary to HTML -> Compute VT Summary",
-              "targetStep": "/api/3/workflow_steps/ee82873b-142c-4251-8e6e-a24dcb9daefa",
-              "sourceStep": "/api/3/workflow_steps/3cf77532-14b3-4835-9a71-e4aaf5b429e5",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "ead92f25-8587-48bb-a3ce-8dacda1d9dfa"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Referenced Playbook -> Compute Verdict",
-              "targetStep": "/api/3/workflow_steps/1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200",
-              "sourceStep": "/api/3/workflow_steps/72e86b39-429f-4d13-bc02-685423965055",
-              "label": "No",
-              "isExecuted": false,
-              "uuid": "5fe5a03c-88f8-44f3-8360-59adacd5df88"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Referenced Playbook -> Return Output Data",
-              "targetStep": "/api/3/workflow_steps/a41980ad-57b4-42db-90af-1e9e529ed46c",
-              "sourceStep": "/api/3/workflow_steps/72e86b39-429f-4d13-bc02-685423965055",
-              "label": "Yes",
-              "isExecuted": false,
-              "uuid": "7c07019b-8d7f-4cd4-9a56-1d02eb9074a3"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Reputation Found -> No Operation",
-              "targetStep": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
-              "sourceStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
-              "label": "No",
-              "isExecuted": false,
-              "uuid": "937b4ff0-df30-4810-abf8-3df6e8f03092"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Job ID Created -> Get Details of Submitted File",
-              "targetStep": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
-              "sourceStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
-              "label": "Yes",
-              "isExecuted": false,
-              "uuid": "58626bb3-d8da-41b3-86ca-860318e7693c"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Is Job ID Created -> No Operation",
-              "targetStep": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
-              "sourceStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
-              "label": "No",
-              "isExecuted": false,
-              "uuid": "be6a8e60-7c2a-4662-963c-5e6971e915b2"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Get File Verdict -> Is Job ID Created",
-              "targetStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
-              "sourceStep": "/api/3/workflow_steps/de714a70-5dd0-4be5-8215-4b54aea401e6",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "f7d0e52b-94d6-480d-84c0-8a646e74245e"
-            },
-            {
-              "@type": "WorkflowRoute",
-              "name": "Compute File Hash -> Get File Verdict",
-              "targetStep": "/api/3/workflow_steps/de714a70-5dd0-4be5-8215-4b54aea401e6",
-              "sourceStep": "/api/3/workflow_steps/3f49ba44-bf9b-4f29-83bc-252cca6cc360",
-              "label": null,
-              "isExecuted": false,
-              "uuid": "026a037e-ffcd-42b7-b38d-a85067f95554"
             },
             {
               "@type": "WorkflowRoute",
@@ -1902,7 +1654,78 @@
               "sourceStep": "/api/3/workflow_steps/6cc50b8c-9e16-4ac3-9cba-4a21dd38708d",
               "label": null,
               "isExecuted": false,
+              "group": null,
               "uuid": "a41db2a9-cc9b-492f-945a-4e8cfecb585c"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Convert Summary to HTML -> Compute VT Summary",
+              "targetStep": "/api/3/workflow_steps/ee82873b-142c-4251-8e6e-a24dcb9daefa",
+              "sourceStep": "/api/3/workflow_steps/3cf77532-14b3-4835-9a71-e4aaf5b429e5",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "ead92f25-8587-48bb-a3ce-8dacda1d9dfa"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Find Existing Description -> Update Sandbox Summary",
+              "targetStep": "/api/3/workflow_steps/c62d2f42-9657-4d2a-bc9d-06b6aade6fc9",
+              "sourceStep": "/api/3/workflow_steps/088748cb-b017-47f6-89e6-1b3987eb2f0c",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "b8b9798a-6ab9-43c5-bf73-ccaff2293493"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Get Details of Submitted File -> Convert Summary to HTML",
+              "targetStep": "/api/3/workflow_steps/3cf77532-14b3-4835-9a71-e4aaf5b429e5",
+              "sourceStep": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "4219479d-2a34-4c1b-9ba0-76e8016c03f2"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Get File Verdict -> Is Job ID Created",
+              "targetStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
+              "sourceStep": "/api/3/workflow_steps/de714a70-5dd0-4be5-8215-4b54aea401e6",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "f7d0e52b-94d6-480d-84c0-8a646e74245e"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Get Scan Status of Submitted File -> Is Job ID Created",
+              "targetStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
+              "sourceStep": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "5186af29-5ba6-48fc-a1a6-3284cdda3b1e"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is File Hash Calculated -> Get File Verdict",
+              "targetStep": "/api/3/workflow_steps/de714a70-5dd0-4be5-8215-4b54aea401e6",
+              "sourceStep": "/api/3/workflow_steps/ba275eeb-8ef0-4d88-b06d-13fbdd01f89c",
+              "label": "Yes",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "4a0f6780-6605-4a99-a729-b3aa0b067b36"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is File Hash Calculated -> No Operation",
+              "targetStep": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
+              "sourceStep": "/api/3/workflow_steps/ba275eeb-8ef0-4d88-b06d-13fbdd01f89c",
+              "label": "No",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "2994eddd-ae2a-4527-94f4-e4d0c4724395"
             },
             {
               "@type": "WorkflowRoute",
@@ -1911,6 +1734,7 @@
               "sourceStep": "/api/3/workflow_steps/81104b75-4bc2-4ef6-8024-48a36560ea67",
               "label": "No",
               "isExecuted": false,
+              "group": null,
               "uuid": "759b0121-8a6a-487a-8bde-f85e7cf8cd1a"
             },
             {
@@ -1920,7 +1744,88 @@
               "sourceStep": "/api/3/workflow_steps/81104b75-4bc2-4ef6-8024-48a36560ea67",
               "label": "Yes",
               "isExecuted": false,
+              "group": null,
               "uuid": "707dadfc-a1be-48b7-b045-51f350e4516c"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Job ID Created -> Get Details of Submitted File",
+              "targetStep": "/api/3/workflow_steps/00ba4d35-6b64-4e0c-b9a8-122526abfaba",
+              "sourceStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
+              "label": "Yes",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "58626bb3-d8da-41b3-86ca-860318e7693c"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Job ID Created -> No Operation",
+              "targetStep": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
+              "sourceStep": "/api/3/workflow_steps/f86ac6b8-6881-436b-af90-788bd6e4488b",
+              "label": "No",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "be6a8e60-7c2a-4662-963c-5e6971e915b2"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Referenced Playbook -> Compute Verdict",
+              "targetStep": "/api/3/workflow_steps/1f91ab38-fe40-44bd-bdd3-7a3a0ef1b200",
+              "sourceStep": "/api/3/workflow_steps/72e86b39-429f-4d13-bc02-685423965055",
+              "label": "No",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "5fe5a03c-88f8-44f3-8360-59adacd5df88"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Referenced Playbook -> Return Output Data",
+              "targetStep": "/api/3/workflow_steps/a41980ad-57b4-42db-90af-1e9e529ed46c",
+              "sourceStep": "/api/3/workflow_steps/72e86b39-429f-4d13-bc02-685423965055",
+              "label": "Yes",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "7c07019b-8d7f-4cd4-9a56-1d02eb9074a3"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Reputation Found -> Get Scan Status of Submitted File",
+              "targetStep": "/api/3/workflow_steps/e157fa42-6ae5-4511-8c1a-01554d7deae3",
+              "sourceStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
+              "label": "Yes",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "e264b0d0-7716-4348-9c86-2db6e23c9f8f"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Is Reputation Found -> No Operation",
+              "targetStep": "/api/3/workflow_steps/09da8c05-f149-4fa9-9337-c825ad9fde5a",
+              "sourceStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
+              "label": "No",
+              "isExecuted": false,
+              "group": null,
+              "uuid": "937b4ff0-df30-4810-abf8-3df6e8f03092"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> Configuration",
+              "targetStep": "/api/3/workflow_steps/6cc50b8c-9e16-4ac3-9cba-4a21dd38708d",
+              "sourceStep": "/api/3/workflow_steps/2fbaa5ea-cd9d-4e60-8701-e309b50a9933",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "3a55fff9-dadc-4506-a6b5-952c74566310"
+            },
+            {
+              "@type": "WorkflowRoute",
+              "name": "Submit URL -> Is Reputation Found",
+              "targetStep": "/api/3/workflow_steps/34d1f02c-b2a3-4a16-9685-4391440a3ca5",
+              "sourceStep": "/api/3/workflow_steps/1c7870d9-c905-48f7-9848-ec02acc495a3",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "84154cfe-2b82-46f8-b2f2-215f0e4f3620"
             }
           ],
           "groups": [],
@@ -1938,430 +1843,309 @@
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Scan Stats",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves the scan stats for the last 7 days from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/627de0a5-26a9-4b3c-ba6f-a3269cfa5c64",
+          "uuid": "363a5785-6590-4308-9652-bd268ef3b563",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "54cb7e98-a388-4695-86e0-da70ad27eb79",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "4862f59e-4d7a-42ef-9d1f-37d3f7d9be34",
-                "title": "Fortinet FortiSandbox: Get Scan Stats",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "627de0a5-26a9-4b3c-ba6f-a3269cfa5c64"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "87f5ab40-2738-4081-8271-9fb6758e146f",
               "@type": "WorkflowStep",
               "name": "Get Scan Stats",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": [],
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_stats",
-                "operationTitle": "Get Scan Stats",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get Scan Stats"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "64e60c96-2684-40fa-83d1-60a1aea4b72d"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves the scan stats for the last 7 days from Fortinet FortiSandbox.",
+          "name": "Get Scan Stats",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/54cb7e98-a388-4695-86e0-da70ad27eb79",
           "routes": [
             {
+              "uuid": "c6f53518-6da3-4857-8c6d-bd181b9ca3a6",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Scan Stats",
-              "targetStep": "/api/3/workflow_steps/64e60c96-2684-40fa-83d1-60a1aea4b72d",
-              "sourceStep": "/api/3/workflow_steps/627de0a5-26a9-4b3c-ba6f-a3269cfa5c64",
               "label": null,
               "isExecuted": false,
-              "uuid": "70d8c1bd-b7d8-4fe0-af6f-758a04b01698"
+              "name": "Start-> Get Scan Stats",
+              "sourceStep": "/api/3/workflow_steps/54cb7e98-a388-4695-86e0-da70ad27eb79",
+              "targetStep": "/api/3/workflow_steps/87f5ab40-2738-4081-8271-9fb6758e146f"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "903c16eb-5e8a-4698-9856-4f496fc86095",
-          "id": 783,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get All Installed VM",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves the names and the clone numbers of all installed VMs on Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/4b9dd81a-8629-46e5-be0e-cb9bd05bfeaf",
+          "uuid": "c5073d0f-0fd3-48ac-b669-7afe8e9315c7",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "e536b69c-ad49-4639-aed5-97b71abc3892",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "56115352-032f-4ea3-87a5-2fbfa21c1f8d",
               "@type": "WorkflowStep",
               "name": "Get All Installed VM",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": [],
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_installed_vm",
-                "operationTitle": "Get All Installed VM",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get All Installed VM"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "17365b31-23c9-4eb7-8a23-6a4e16823b54"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "89d2a7f7-fc5c-4a2c-92f0-832d7de8a6e8",
-                "title": "Fortinet FortiSandbox: Get All Installed VM",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "4b9dd81a-8629-46e5-be0e-cb9bd05bfeaf"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves the names and the clone numbers of all installed VMs on Fortinet FortiSandbox.",
+          "name": "Get All Installed VM",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e536b69c-ad49-4639-aed5-97b71abc3892",
           "routes": [
             {
+              "uuid": "9565cf8e-b529-4a51-8f33-ae9e2cf68daf",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get All Installed VM",
-              "targetStep": "/api/3/workflow_steps/17365b31-23c9-4eb7-8a23-6a4e16823b54",
-              "sourceStep": "/api/3/workflow_steps/4b9dd81a-8629-46e5-be0e-cb9bd05bfeaf",
               "label": null,
               "isExecuted": false,
-              "uuid": "8a1466cb-1b1c-44a2-879a-7226eccef03b"
+              "name": "Start-> Get All Installed VM",
+              "sourceStep": "/api/3/workflow_steps/e536b69c-ad49-4639-aed5-97b71abc3892",
+              "targetStep": "/api/3/workflow_steps/56115352-032f-4ea3-87a5-2fbfa21c1f8d"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "a814a240-2230-4066-a07b-2e8b4457fa8e",
-          "id": 784,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "List Filehash or URL From Malware Package or URL Package",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves a list of file hashes or URLs based on the type you have specified from the Malware Package or URL Package in Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/2657ec07-f78c-4e71-9099-991dc013bc3d",
+          "uuid": "83592746-3258-42fe-a27b-6063c767da95",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "ecb5a96f-5822-4c74-9145-dea9ad93d2d7",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "5f2d27f2-1ac7-46a3-9828-91d2f17a325f",
-                "title": "Fortinet FortiSandbox: List Filehash or URL From Malware Package or URL Package",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "2657ec07-f78c-4e71-9099-991dc013bc3d"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "f07006a1-0bfd-4874-b063-893f4fa080b1",
               "@type": "WorkflowStep",
               "name": "List Filehash or URL From Malware Package or URL Package",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "lazy": false,
-                  "type": "SHA1"
+                  "type": "SHA1",
+                  "lazy": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "download_hashes_url_from_mwpkg",
-                "operationTitle": "List Filehash or URL From Malware Package or URL Package",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "List Filehash or URL From Malware Package or URL Package"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "a47baf06-113a-4eb0-aeda-fcab08713e94"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of file hashes or URLs based on the type you have specified from the Malware Package or URL Package in Fortinet FortiSandbox.",
+          "name": "List Filehash or URL From Malware Package or URL Package",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/ecb5a96f-5822-4c74-9145-dea9ad93d2d7",
           "routes": [
             {
+              "uuid": "ae189f0a-b694-4bfe-9bcb-f6125da3b482",
               "@type": "WorkflowRoute",
-              "name": "Start-> List Filehash or URL From Malware Package or URL Package",
-              "targetStep": "/api/3/workflow_steps/a47baf06-113a-4eb0-aeda-fcab08713e94",
-              "sourceStep": "/api/3/workflow_steps/2657ec07-f78c-4e71-9099-991dc013bc3d",
               "label": null,
               "isExecuted": false,
-              "uuid": "1348d5fd-8840-44b1-8b9d-b83c86d18269"
+              "name": "Start-> List Filehash or URL From Malware Package or URL Package",
+              "sourceStep": "/api/3/workflow_steps/ecb5a96f-5822-4c74-9145-dea9ad93d2d7",
+              "targetStep": "/api/3/workflow_steps/f07006a1-0bfd-4874-b063-893f4fa080b1"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "b39ac205-ea1c-4217-9d46-bb07a091ba0b",
-          "id": 785,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Submission Job List",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves all job IDs associated with the submission ID you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/2a8da151-db23-4098-b7b7-58516f227fb7",
+          "uuid": "97e28df2-2b86-4219-a885-a8a6696331ae",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "647aea79-a56a-4ca7-b046-ba6a2f600465",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "b7c63950-7984-4a27-9891-ce4c7b1a43e3",
-                "title": "Fortinet FortiSandbox: Get Submission Job List",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "2a8da151-db23-4098-b7b7-58516f227fb7"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "7aa3ebb9-526d-4cba-b4ae-f4b954776867",
               "@type": "WorkflowStep",
               "name": "Get Submission Job List",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
                   "sid": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_submission_job_list",
-                "operationTitle": "Get Submission Job List",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get Submission Job List"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "a9f24165-cfa5-4aa6-a2ad-fcda4eb2a7fd"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves all job IDs associated with the submission ID you have specified from Fortinet FortiSandbox.",
+          "name": "Get Submission Job List",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/647aea79-a56a-4ca7-b046-ba6a2f600465",
           "routes": [
             {
+              "uuid": "6f2462b6-3a5a-463b-a613-1f1b3bd9e18d",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Submission Job List",
-              "targetStep": "/api/3/workflow_steps/a9f24165-cfa5-4aa6-a2ad-fcda4eb2a7fd",
-              "sourceStep": "/api/3/workflow_steps/2a8da151-db23-4098-b7b7-58516f227fb7",
               "label": null,
               "isExecuted": false,
-              "uuid": "b24d1fd6-3334-4feb-b0f2-45343695fc4a"
+              "name": "Start-> Get Submission Job List",
+              "sourceStep": "/api/3/workflow_steps/647aea79-a56a-4ca7-b046-ba6a2f600465",
+              "targetStep": "/api/3/workflow_steps/7aa3ebb9-526d-4cba-b4ae-f4b954776867"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "b80489b9-63f4-4b15-a537-d4692646a23d",
-          "id": 786,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Toggle FPN State",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Marks specified sample based on the Job ID you have specified as false negative or false positive in Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/048d8d49-fb81-4f79-8069-5050e654c9cd",
+          "uuid": "efc4b740-d203-4899-a51d-366d41dc8989",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "408c747c-02e0-41cb-8483-2b2d107a088c",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "739029c4-173b-4408-9292-2329b634e61d",
-                "title": "Fortinet FortiSandbox: Toggle FPN State",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "048d8d49-fb81-4f79-8069-5050e654c9cd"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "2258d7a9-9c09-400d-b859-8c77d2853817",
               "@type": "WorkflowStep",
               "name": "Toggle FPN State",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
@@ -2369,383 +2153,355 @@
                   "jid": "",
                   "comments": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "mark_sample_fp_fn",
-                "operationTitle": "Toggle FPN State",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Toggle FPN State"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "29a357ac-53b7-4769-b2d6-53e25bdcf574"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Marks specified sample based on the Job ID you have specified as false negative or false positive in Fortinet FortiSandbox.",
+          "name": "Toggle FPN State",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/408c747c-02e0-41cb-8483-2b2d107a088c",
           "routes": [
             {
+              "uuid": "114380d2-f4e0-4ae5-849f-1831f85a24c4",
               "@type": "WorkflowRoute",
-              "name": "Start-> Toggle FPN State",
-              "targetStep": "/api/3/workflow_steps/29a357ac-53b7-4769-b2d6-53e25bdcf574",
-              "sourceStep": "/api/3/workflow_steps/048d8d49-fb81-4f79-8069-5050e654c9cd",
               "label": null,
               "isExecuted": false,
-              "uuid": "30df72fe-c04a-41af-ab98-2b0a7090c747"
+              "name": "Start-> Toggle FPN State",
+              "sourceStep": "/api/3/workflow_steps/408c747c-02e0-41cb-8483-2b2d107a088c",
+              "targetStep": "/api/3/workflow_steps/2258d7a9-9c09-400d-b859-8c77d2853817"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "be9c3e9f-e006-442f-b1c3-8e81cef09add",
-          "id": 787,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get File Verdict",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves the file verdict details for the file type and filehash you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/b94c67a5-1ea0-483f-8fac-dd30fedaebf1",
+          "uuid": "fa6a7238-3a92-444a-8eda-9cc3fe40f4ea",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "8fb9e33f-bc94-43db-9a5f-afdbecefb1e3",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "d09d20fe-e971-4382-aa92-670b9b22295d",
               "@type": "WorkflowStep",
               "name": "Get File Verdict",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "file_hash": "",
-                  "hash_type": "SHA1"
+                  "hash_type": "SHA1",
+                  "file_hash": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_file_verdict",
-                "operationTitle": "Get File Verdict",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get File Verdict"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "5d50447f-fb75-4ca9-91ad-d2482808cd8b"
-            },
-            {
-              "@type": "WorkflowStep",
-              "name": "Start",
-              "description": null,
-              "arguments": {
-                "route": "0544838f-4fb3-49b3-8719-5326073168cb",
-                "title": "Fortinet FortiSandbox: Get File Verdict",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
-                "step_variables": {
-                  "input": {
-                    "records": "{{vars.input.records[0]}}"
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
-              },
-              "status": null,
-              "top": "20",
-              "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "b94c67a5-1ea0-483f-8fac-dd30fedaebf1"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves the file verdict details for the file type and filehash you have specified from Fortinet FortiSandbox.",
+          "name": "Get File Verdict",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8fb9e33f-bc94-43db-9a5f-afdbecefb1e3",
           "routes": [
             {
+              "uuid": "444a1504-0f2b-4cfb-9644-61d476938d11",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get File Verdict",
-              "targetStep": "/api/3/workflow_steps/5d50447f-fb75-4ca9-91ad-d2482808cd8b",
-              "sourceStep": "/api/3/workflow_steps/b94c67a5-1ea0-483f-8fac-dd30fedaebf1",
               "label": null,
               "isExecuted": false,
-              "uuid": "eacb25ec-f795-4eeb-8be4-26f9b7d935f4"
+              "name": "Start-> Get File Verdict",
+              "sourceStep": "/api/3/workflow_steps/8fb9e33f-bc94-43db-9a5f-afdbecefb1e3",
+              "targetStep": "/api/3/workflow_steps/d09d20fe-e971-4382-aa92-670b9b22295d"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "c7b72de1-55d4-45d6-94ab-726a6b78633e",
-          "id": 788,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Update White or Black List",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Updates an existing whitelist or an existing blacklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/6c9fdb02-0d75-48b1-a261-eecf44480449",
+          "uuid": "c96eb803-4dc3-4e8f-9349-14335922abbc",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "edee3d09-aa17-4c7a-a18b-ca3c0c8ad979",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "3569aedc-50fe-47c1-afe6-5c71398ce61f",
-                "title": "Fortinet FortiSandbox: Update White or Black List",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "6c9fdb02-0d75-48b1-a261-eecf44480449"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "f3d5fe9f-e048-4cc0-ad2b-8f5c51ae6d51",
               "@type": "WorkflowStep",
               "name": "Update White or Black List",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "action": "APPEND",
                   "list_type": "WHITE",
-                  "indicator_type": "SHA1"
+                  "indicator_type": "SHA1",
+                  "action": "APPEND"
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "handle_white_black_list",
-                "operationTitle": "Update White or Black List",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Update White or Black List"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "f5faf36c-2047-452c-b93b-709767425ee6"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "(Deprecated) Updates an existing whitelist or an existing blacklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. Note: This action should be used for FortiSandBox version prior to 4.0. For FortiSandBox version 4.0 or later use \"Update Allow or Block List\" action.",
+          "name": "Update White or Black List",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/edee3d09-aa17-4c7a-a18b-ca3c0c8ad979",
           "routes": [
             {
+              "uuid": "4c11ddcb-3ef9-4700-8935-cb84c00125d4",
               "@type": "WorkflowRoute",
-              "name": "Start-> Update White or Black List",
-              "targetStep": "/api/3/workflow_steps/f5faf36c-2047-452c-b93b-709767425ee6",
-              "sourceStep": "/api/3/workflow_steps/6c9fdb02-0d75-48b1-a261-eecf44480449",
               "label": null,
               "isExecuted": false,
-              "uuid": "7a8d8bb1-4918-4c7f-8b14-f0ae02828ff6"
+              "name": "Start-> Update White or Black List",
+              "sourceStep": "/api/3/workflow_steps/edee3d09-aa17-4c7a-a18b-ca3c0c8ad979",
+              "targetStep": "/api/3/workflow_steps/f3d5fe9f-e048-4cc0-ad2b-8f5c51ae6d51"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "db302b50-09ba-4303-90a2-037d8ca2a796",
-          "id": 789,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Get Job Verdict Detail",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Retrieves job verdict detail for job ID you have specified from Fortinet FortiSandbox.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/a3a368e8-390e-4a8c-8d50-81d42612af8f",
+          "uuid": "348dc034-629a-49f2-a650-46fda446a1dc",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "e4e500a6-b75f-480a-b2e6-859eba8b456d",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "3b624e91-aede-4ec9-ba44-26d5a13372aa",
-                "title": "Fortinet FortiSandbox: Get Job Verdict Detail",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "a3a368e8-390e-4a8c-8d50-81d42612af8f"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "21f88514-7c1d-485f-af52-08856ec85b22",
+              "@type": "WorkflowStep",
+              "name": "Update Allow or Block List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiSandbox",
+                "config": "",
+                "params": {
+                  "list_type": "ALLOW",
+                  "indicator_type": "SHA1",
+                  "action": "APPEND"
+                },
+                "version": "2.1.0",
+                "connector": "fortinet-fortisandbox",
+                "operation": "handle_allow_block_list",
+                "operationTitle": "Update Allow or Block List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Updates an existing allowlist or an existing blocklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. Note: This action should be used for FortiSandBox version prior 4.0 or later. For FortiSandBox version prior to 4.0 use \"Update White or Black List\" action.",
+          "name": "Update Allow or Block List",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e4e500a6-b75f-480a-b2e6-859eba8b456d",
+          "routes": [
+            {
+              "uuid": "8b26c282-86ce-414a-ae58-e9b2791ce4ce",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Update Allow or Block List",
+              "sourceStep": "/api/3/workflow_steps/e4e500a6-b75f-480a-b2e6-859eba8b456d",
+              "targetStep": "/api/3/workflow_steps/21f88514-7c1d-485f-af52-08856ec85b22"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d8dbb39d-0792-46bd-a956-13a22b91a3e5",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
+          "steps": [
+            {
+              "uuid": "a52ec6b1-cefc-4a42-ab8c-5e9ba099144c",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "d02ad51f-6890-48d6-9283-64d839c6abe6",
               "@type": "WorkflowStep",
               "name": "Get Job Verdict Detail",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
                   "jid": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "get_scan_result_job",
-                "operationTitle": "Get Job Verdict Detail",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Get Job Verdict Detail"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "d128e107-952f-4a9e-919d-2fcc18ea5ba1"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Retrieves job verdict detail for job ID you have specified from Fortinet FortiSandbox.",
+          "name": "Get Job Verdict Detail",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a52ec6b1-cefc-4a42-ab8c-5e9ba099144c",
           "routes": [
             {
+              "uuid": "38845587-545a-4995-9ea5-2a6c5ab7e551",
               "@type": "WorkflowRoute",
-              "name": "Start-> Get Job Verdict Detail",
-              "targetStep": "/api/3/workflow_steps/d128e107-952f-4a9e-919d-2fcc18ea5ba1",
-              "sourceStep": "/api/3/workflow_steps/a3a368e8-390e-4a8c-8d50-81d42612af8f",
               "label": null,
               "isExecuted": false,
-              "uuid": "7c1f17a7-cb3d-4e09-9a8e-7709b2886ac1"
+              "name": "Start-> Get Job Verdict Detail",
+              "sourceStep": "/api/3/workflow_steps/a52ec6b1-cefc-4a42-ab8c-5e9ba099144c",
+              "targetStep": "/api/3/workflow_steps/d02ad51f-6890-48d6-9283-64d839c6abe6"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "de5cadd2-86b3-405b-a9df-210abd1003e6",
-          "id": 790,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         },
         {
           "@type": "Workflow",
-          "triggerLimit": null,
-          "name": "Submit File",
-          "aliasName": null,
-          "tag": "#Fortinet FortiSandbox",
-          "description": "Submits a file to Fortinet FortiSandbox from the FortiSOAR \"Attachments\" module, i.e., based on the attachment IRI you have specified.",
-          "isActive": false,
-          "debug": false,
-          "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
-          "parameters": [],
-          "synchronous": false,
-          "lastModifyDate": null,
-          "collection": "/api/3/workflow_collections/3105b331-01e8-460c-8114-392c740a6e71",
-          "versions": [],
-          "triggerStep": "/api/3/workflow_steps/5a428030-e7dd-40a2-adeb-802216600069",
+          "uuid": "61850314-b6ac-43e9-b96b-536b05f5d838",
+          "collection": "/api/3/workflow_collections/a451e186-d0ed-4929-b7b9-efb0280d9ceb",
           "steps": [
             {
+              "uuid": "add838e9-ed8f-4dab-be12-fc023019563d",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "ab98ccb4-1e9b-4615-ad2b-7b4d32fe9b3e",
-                "title": "Fortinet FortiSandbox: Submit File",
-                "resources": [
-                  "alerts"
-                ],
-                "inputVariables": [],
                 "step_variables": {
                   "input": {
                     "records": "{{vars.input.records[0]}}"
                   }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": true,
-                "singleRecordExecution": false
+                }
               },
-              "status": null,
-              "top": "20",
               "left": "20",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "group": null,
-              "uuid": "5a428030-e7dd-40a2-adeb-802216600069"
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
             },
             {
+              "uuid": "6c29825c-369f-4058-8a00-06f2f0ea5f9a",
               "@type": "WorkflowStep",
               "name": "Submit File",
               "description": null,
+              "status": null,
               "arguments": {
                 "name": "Fortinet FortiSandbox",
                 "config": "",
@@ -2753,60 +2509,43 @@
                   "input_type": "Attachment ID",
                   "overwrite_vm_list": ""
                 },
-                "version": "2.0.0",
+                "version": "2.1.0",
                 "connector": "fortinet-fortisandbox",
                 "operation": "submit_file",
-                "operationTitle": "Submit File",
-                "step_variables": {
-                  "output_data": "{{vars.result}}"
-                }
+                "operationTitle": "Submit File"
               },
-              "status": null,
-              "top": "120",
               "left": "188",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "group": null,
-              "uuid": "fd5837ee-234b-4af4-8571-7360d071a170"
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
+          "triggerLimit": null,
+          "description": "Submits a file to Fortinet FortiSandbox based on the attachment ID or indicator IRI you have specified.",
+          "name": "Submit File",
+          "tag": "#Fortinet FortiSandbox",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortisandbox"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/add838e9-ed8f-4dab-be12-fc023019563d",
           "routes": [
             {
+              "uuid": "d46d6482-c9f5-4c0f-a2be-88d2f5343751",
               "@type": "WorkflowRoute",
-              "name": "Start-> Submit File",
-              "targetStep": "/api/3/workflow_steps/fd5837ee-234b-4af4-8571-7360d071a170",
-              "sourceStep": "/api/3/workflow_steps/5a428030-e7dd-40a2-adeb-802216600069",
               "label": null,
               "isExecuted": false,
-              "uuid": "79791f17-af5c-405c-a82c-a6c75398c61e"
+              "name": "Start-> Submit File",
+              "sourceStep": "/api/3/workflow_steps/add838e9-ed8f-4dab-be12-fc023019563d",
+              "targetStep": "/api/3/workflow_steps/6c29825c-369f-4058-8a00-06f2f0ea5f9a"
             }
-          ],
-          "groups": [],
-          "priority": null,
-          "uuid": "fba970af-4388-4c8c-a1d7-ae44aa54c3bb",
-          "id": 791,
-          "owners": [],
-          "isPrivate": false,
-          "deletedAt": null,
-          "importedBy": [],
-          "recordTags": [
-            "fortinet-fortisandbox",
-            "Fortinet"
           ]
         }
       ]
     }
-  ],
-  "macros": [
-    {
-      "name": "Demo_mode",
-      "value": "false",
-      "default_value": "false"
-    }
-  ],
-  "exported_tags": [
-    "fortinet-fortisandbox",
-    "Fortinet",
-    "Enrichment",
-    "ManualTrigger"
   ]
 }

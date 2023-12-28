@@ -1,3 +1,8 @@
 #### Whats Improved
-- Added support for FortiSandbox cloud. The connector now supports both on-prem and FortiCloud instances.
-- A new configurable option now uploads or skips the file upload to FortiSandBox. A global variable fortisandbox_upload_file when set to true uploads the file to FortiSandBox and skips the upload when set to false.
+- Added `Version` as a configuration parameter.
+- Added `Update Allow or Block List` action.
+- Added `Decode Behaviour File String` parameter to `Get Job Behaviour` action.
+
+#### Whats Fixed
+- Fixed a bug where `File > FortiSandbox > Enrichment` playbook failed if indicator doesn't have a file.
+- Fixed a bug where `Submit File` action failed if file IRI is provided as input in Indicator ID or Attachment IRI parameter.

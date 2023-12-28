@@ -1,17 +1,17 @@
-""" Copyright start
-  Copyright (C) 2008 - 2023 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
+"""
+Copyright start
+MIT License
+Copyright (c) 2023 Fortinet Inc
+Copyright end
+"""
 import requests
 import logging
 from base64 import b64encode
 from requests_toolbelt.utils import dump
 from connectors.core.connector import get_logger, ConnectorError
 
-
 logger = get_logger('fortisandbox')
-#logger.setLevel(logging.DEBUG) # Uncomment for connector specific debug
+# logger.setLevel(logging.DEBUG) # Uncomment for connector specific debug
 
 
 QUERY_SCHEMA = {
@@ -30,8 +30,8 @@ QUERY_SCHEMA = {
         "method": "get",
         "params": [
             {
-            "url": "/sys/login/token",
-            "token": ""
+                "url": "/sys/login/token",
+                "token": ""
             }
         ],
         'id': 1,
@@ -56,7 +56,7 @@ QUERY_SCHEMA = {
         'params': [
             {
                 'url': '/scan/stat/last_7day',
-                'period': 7*24*60
+                'period': 7 * 24 * 60
             }
         ],
         'session': '',
@@ -185,29 +185,44 @@ QUERY_SCHEMA = {
         'ver': '2.1'
     },
     'white-black-list': {
-      "method": "post",
-      "params": [
-        {
-          "url": "/scan/policy/black-white-list",
-          "list_type": "",
-          "checksum_type": "",
-          "action": "",
-          "upload_file": ""
-        }
-      ],
-      "session": "",
-      "id": 25,
-      "ver": "2.2.1"
+        "method": "post",
+        "params": [
+            {
+                "url": "/scan/policy/black-white-list",
+                "list_type": "",
+                "checksum_type": "",
+                "action": "",
+                "upload_file": ""
+            }
+        ],
+        "session": "",
+        "id": 25,
+        "ver": "2.2.1"
+    },
+    'allow-block-list': {
+        "method": "post",
+        "params": [
+            {
+                "url": "/scan/policy/allow-block-list",
+                "list_type": "",
+                "checksum_type": "",
+                "action": "",
+                "upload_file": ""
+            }
+        ],
+        "session": "",
+        "id": 25,
+        "ver": "4.0"
     },
     'mark-sample-fp-fn':
         {
             "method": "post",
             "params": [
                 {
-                  "url": "/analysis/details/submit-feedback",
-                  "jid": "",
-                  "comments": "",
-                  "cloud_submit": 0
+                    "url": "/analysis/details/submit-feedback",
+                    "jid": "",
+                    "comments": "",
+                    "cloud_submit": 0
                 }
             ],
             "session": "",
@@ -216,93 +231,92 @@ QUERY_SCHEMA = {
         },
     'get-avrescan':
         {
-          "method": "post",
-          "params": [
-            {
-              "url": "/scan/result/get-avrescan",
-              "need_av_ver": 0,
-              "stime": '',
-              "etime": ''
-            }
-          ],
-          "session": "",
-          "id": 23,
-          "ver": "2.1"
+            "method": "post",
+            "params": [
+                {
+                    "url": "/scan/result/get-avrescan",
+                    "need_av_ver": 0,
+                    "stime": '',
+                    "etime": ''
+                }
+            ],
+            "session": "",
+            "id": 23,
+            "ver": "2.1"
         },
     'get-multiple-file-verdict':
         {
-          "method": "get",
-          "params": [
-            {
-              "url": "/scan/result/multifile",
-              "ctype": "",
-              "checksum": []
-            }
-          ],
-          "session": "",
-          "id": 43,
-          "ver": "2.4"
+            "method": "get",
+            "params": [
+                {
+                    "url": "/scan/result/multifile",
+                    "ctype": "",
+                    "checksum": []
+                }
+            ],
+            "session": "",
+            "id": 43,
+            "ver": "2.4"
         },
     'get-all-installed-vm':
         {
-        "method": "get",
-        "params": [
-            {
-              "url": "/alert/ondemand/hcmvminfo"
-            }
-        ],
-        "session": "",
-        "id": 43,
-        "ver": "2.4"
+            "method": "get",
+            "params": [
+                {
+                    "url": "/alert/ondemand/hcmvminfo"
+                }
+            ],
+            "session": "",
+            "id": 43,
+            "ver": "2.4"
         },
     'get-pdf-report':
         {
-          "method": "get",
-          "params": [
-            {
-              "url": "/scan/result/get-pdf-report",
-              "qtype": "",
-              "qval": ""
-            }
-          ],
-          "session": "",
-          "id": 50,
-          "ver": "2.5"
+            "method": "get",
+            "params": [
+                {
+                    "url": "/scan/result/get-pdf-report",
+                    "qtype": "",
+                    "qval": ""
+                }
+            ],
+            "session": "",
+            "id": 50,
+            "ver": "2.5"
         },
 
     'download-malpkg':
         {
-          "method": "post",
-          "params": [
-            {
-              "url": "/scan/device/download-malpkg-text",
-              "type": 0,
-              # "lazy": 1,
-              # "minor": 100,
-              # "major": 2
-            }
-          ],
-          "session": "",
-          "id": 22,
-          "ver": "2.4.1"
+            "method": "post",
+            "params": [
+                {
+                    "url": "/scan/device/download-malpkg-text",
+                    "type": 0,
+                    # "lazy": 1,
+                    # "minor": 100,
+                    # "major": 2
+                }
+            ],
+            "session": "",
+            "id": 22,
+            "ver": "2.4.1"
         },
-
 
     'get_dev_settings': {
         'method': 'get',
-        'params': [{'url': '/config/scan/devsniffer',}],
+        'params': [{'url': '/config/scan/devsniffer', }],
         'session': '',
         'id': 4,
         'ver': '2.1'
     },
     'get_option_settings': {
         'method': 'get',
-        'params': [{'url': '/config/scan/options',}],
+        'params': [{'url': '/config/scan/options', }],
         'session': '',
         'id': 5,
         'ver': '2.1'
     },
-    'set_dev_settings':  {
+    'set_dev_settings': {
         'method': 'set',
         'params': [
             {
@@ -346,7 +360,7 @@ QUERY_SCHEMA = {
     },
     'get_backup_file': {
         'method': 'exec',
-        'params': [{'url': '/backup/config',}],
+        'params': [{'url': '/backup/config', }],
         'session': '',
         'id': 9,
         'ver': '2.1'
@@ -366,7 +380,7 @@ class FortiSandbox:
             self.on_prem = True
         elif self.instance_type == 'Cloud':
             self.api_token = config.get('api_token')
-            self.on_prem = False            
+            self.on_prem = False
         self.verify_ssl = config['verify_ssl']
         self.error_msg = {
             400: 'Bad/Invalid Request',
@@ -379,6 +393,7 @@ class FortiSandbox:
             'time_out': 'The request timed out while trying to connect to the remote server',
             'ssl_error': 'SSL certificate validation failed'
         }
+        self.version = str(config.get("version")) if config.get("version") else None
         self.session_id = self.login()
 
     def _load_file_for_upload(self, content, test_input, filename):
@@ -391,7 +406,8 @@ class FortiSandbox:
         @rtype: dict
         @return: updated JSON RPC request dict.
          """
-        base64_data = b64encode(content).decode() if isinstance(content, bytes) else b64encode(content.encode()).decode()
+        base64_data = b64encode(content).decode() if isinstance(content, bytes) else b64encode(
+            content.encode()).decode()
         test_input['params'][0]['file'] = base64_data
         test_input['params'][0]['filename'] = b64encode(filename.encode()).decode()
         return test_input
@@ -407,6 +423,11 @@ class FortiSandbox:
         @rtype: HttpResponse
         @return: JSON RPC response data.
         """
+
+        if self.version:
+            data['ver'] = self.version
+            if data['ver'] >= '2.3':
+                data['params'][0].update(data['params'][0].pop('data', [{}])[0])
 
         try:
             response = requests.post(self.base_url, json=data, verify=self.verify_ssl)
@@ -435,7 +456,6 @@ class FortiSandbox:
             else:
                 login_input = QUERY_SCHEMA.get('cloud_login')
                 login_input['params'][0]['token'] = self.api_token
-
             login_response = self._handle_post(login_input)
             if 'session' in login_response:
                 logger.info('Logged in successfully')
@@ -454,4 +474,3 @@ class FortiSandbox:
             logger.info('Logged out successfully')
         except Exception as e:
             raise ConnectorError(e)
-

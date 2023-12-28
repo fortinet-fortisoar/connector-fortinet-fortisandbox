@@ -425,6 +425,7 @@ class FortiSandbox:
         """
 
         if self.version:
+            data['ver'] = self.version
             if data['ver'] >= '2.3':
                 data['params'][0].update(data['params'][0].pop('data', [{}])[0])
 
@@ -455,8 +456,6 @@ class FortiSandbox:
             else:
                 login_input = QUERY_SCHEMA.get('cloud_login')
                 login_input['params'][0]['token'] = self.api_token
-            if self.version:
-                login_input["ver"] = self.version
             login_response = self._handle_post(login_input)
             if 'session' in login_response:
                 logger.info('Logged in successfully')
@@ -471,8 +470,6 @@ class FortiSandbox:
         try:
             logout_input = QUERY_SCHEMA.get('logout')
             logout_input['session'] = self.session_id
-            if self.version:
-                logout_input["ver"] = self.version
             self._handle_post(logout_input)
             logger.info('Logged out successfully')
         except Exception as e:

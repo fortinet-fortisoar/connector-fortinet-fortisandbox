@@ -86,8 +86,6 @@ def submit_file(config, params):
         with open(file_path, 'rb') as attachment:
             file_data = attachment.read()
         test_input = QUERY_SCHEMA.get('file_upload')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input = forti._load_file_for_upload(file_data, test_input, filename)
         test_input['params'][0]['overwrite_vm_list'] = params['overwrite_vm_list']
         test_input['session'] = forti.session_id
@@ -108,8 +106,6 @@ def submit_urlfile(config, params):
             urls = urls.split(',')
         urls_value = '\n'.join(urls).replace(' ', '')
         test_input = QUERY_SCHEMA.get('file_upload_url')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input = forti._load_file_for_upload(urls_value, test_input, 'auto_submitted_urls')
         test_input['params'][0]['overwrite_vm_list'] = params['overwrite_vm_list']
         test_input['params'][0]['timeout'] = '60' if params['timeout'] < 0 else str(params['timeout'])
@@ -128,8 +124,6 @@ def get_system_status(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get_status')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
         return response
@@ -144,8 +138,6 @@ def get_scan_stats(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get_scan_stats')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
         return response
@@ -160,8 +152,6 @@ def get_submission_job_list(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-jobs-of-submission')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['sid'] = str(params['sid'])
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
@@ -177,8 +167,6 @@ def get_scan_result_job(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get_job_verdict')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['jid'] = str(params['jid'])
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
@@ -194,8 +182,6 @@ def get_file_rating(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get_file_rating')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['ctype'] = params['hash_type'].lower()
         test_input['params'][0]['checksum'] = params['file_hash']
         test_input['session'] = forti.session_id
@@ -212,8 +198,6 @@ def get_url_rating(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get_url_rating')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['address'] = params['url'] if isinstance(params['url'], list) else [params['url']]
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
@@ -229,8 +213,6 @@ def get_job_behaviour(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-job-behavior')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['ctype'] = params['hash_type'].lower()
         test_input['params'][0]['checksum'] = params['file_hash']
         test_input['session'] = forti.session_id
@@ -249,8 +231,6 @@ def cancel_submission(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('cancel-submission')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['sid'] = str(params['sid'])
         test_input['params'][0]['reason'] = params['reason']
         test_input['session'] = forti.session_id
@@ -280,8 +260,6 @@ def handle_white_black_list(config, params):
         indicator_value = '\n'.join(indicator_value)
 
         test_input = QUERY_SCHEMA.get('white-black-list')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['list_type'] = params['list_type'].lower()
         test_input['params'][0]['checksum_type'] = indicator_type
         test_input['params'][0]['action'] = params['action'].lower()
@@ -322,8 +300,6 @@ def handle_allow_block_list(config, params):
         indicator_value = '\n'.join(indicator_value)
 
         test_input = QUERY_SCHEMA.get('allow-block-list')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['list_type'] = params['list_type'].lower()
         test_input['params'][0]['checksum_type'] = indicator_type
         test_input['params'][0]['action'] = params['action'].lower()
@@ -351,8 +327,6 @@ def mark_sample_fp_fn(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('mark-sample-fp-fn')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['jid'] = str(params['jid'])
         test_input['params'][0]['comments'] = params['comments']
         test_input['params'][0]['cloud_submit'] = 0
@@ -370,8 +344,6 @@ def get_avrescan(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-avrescan')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['stime'] = get_epoch(params['stime'])
         test_input['params'][0]['etime'] = get_epoch(params['etime'])
         test_input['params'][0]['need_av_ver'] = 1 if params['need_av_ver'] else 0
@@ -389,8 +361,6 @@ def get_file_verdict(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-multiple-file-verdict')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['ctype'] = params['hash_type'].lower()
         test_input['params'][0]['checksum'] = params['file_hash'] if (isinstance(params['file_hash'], list)) else [
             params['file_hash']]
@@ -408,8 +378,6 @@ def get_installed_vm(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-all-installed-vm')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['session'] = forti.session_id
         response = forti._handle_post(test_input)
         return response
@@ -424,8 +392,6 @@ def get_pdf_report(config, params):
     forti = FortiSandbox(config)
     try:
         test_input = QUERY_SCHEMA.get('get-pdf-report')
-        if forti.version:
-            test_input["ver"] = forti.version
         test_input['params'][0]['qtype'] = params['qtype']
         test_input['params'][0]['qval'] = params['qval']
         test_input['session'] = forti.session_id
@@ -448,8 +414,6 @@ def download_hashes_url_from_mwpkg(config, params):
     forti = FortiSandbox(config)
     type_map = {'SHA256': 0, 'SHA1': 1, 'MD5': 2, 'URL': 3}
     test_input = QUERY_SCHEMA.get('download-malpkg')
-    if forti.version:
-        test_input["ver"] = forti.version
     lazy = 1 if params['lazy'] else 0
     if lazy == 0:
         major, minor = params['major'], params['minor']

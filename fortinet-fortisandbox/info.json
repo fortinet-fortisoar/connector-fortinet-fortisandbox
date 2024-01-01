@@ -31,7 +31,7 @@
       {
         "name": "instance_type",
         "title": "Instance Type",
-        "tooltip": "Select whether you are using an OnPremise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud,
+        "tooltip": "Select whether you are using an OnPremise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
         "description": "Select whether you are using an OnPremise (VM or Hardware appliance) FortiSandbox appliance or FortiSandbox Cloud",
         "type": "select",
         "options": [

@@ -1,9 +1,11 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2023 Fortinet Inc
+Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
+
+
 import time, os
 import base64
 from base64 import b64encode

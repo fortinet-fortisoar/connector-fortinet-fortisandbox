@@ -12,7 +12,7 @@
     "URL_Enrichment",
     "File_Enrichment"
   ],
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.0/fortinet-fortisandbox/792/fortinet-fortisandbox-v2-1-0",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "configuration": {
@@ -90,8 +90,8 @@
         "editable": true,
         "visible": true,
         "placeholder": " For example, 4.0",
-        "description": "(Optional) Specify the FortiSandBox version to which you will connect and perform automated operations.",
-        "tooltip": "Specify the FortiSandBox version to which you will connect and perform automated operations. For example, 4.0"
+        "description": "(Optional) Specify the FortiSandbox version to which you will connect and perform automated operations.",
+        "tooltip": "Specify the FortiSandbox version to which you will connect and perform automated operations. For example, 4.0"
       },
       {
         "title": "Verify SSL",
@@ -619,10 +619,10 @@
           "value": ""
         },
         {
-          "title": "Decode Behaviour File String",
+          "title": "Decode Behavior File String",
           "name": "decode_file_string",
-          "tooltip": "Provide the value of filehash (considering the filehash type you have chosen from the Hash Type drop-down list)",
-          "description": "(Optional) Value of the filehash (considering the filehash type you have chosen from the Hash Type drop-down list) whose associated job behaviour details you want to retrieve from Fortinet FortiSandbox.",
+          "tooltip": "Specify whether you want to retrieve job behavior details in decoded format. By default it retrieves in gzipped format.",
+          "description": "(Optional) Specify whether you want to retrieve job behavior details in decoded format. By default it retrieves in gzipped format.",
           "type": "checkbox",
           "required": false,
           "editable": true,
@@ -899,7 +899,7 @@
       "operation": "handle_white_black_list",
       "category": "miscellaneous",
       "annotation": "update_white_black_list",
-      "description": "(Deprecated) Updates an existing whitelist or an existing blacklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. Note: This action should be used for FortiSandBox version prior to 4.0. For FortiSandBox version 4.0 or later use \"Update Allow or Block List\" action.",
+      "description": "(Deprecated) Updates an existing whitelist or an existing blacklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. Note: This action is now deprecated for FortiSandbox version 4.0 and later. Use the action \"Update Allow or Block List\" instead.",
       "title": "Update White or Black List",
       "parameters": [
         {
@@ -1016,14 +1016,14 @@
       "operation": "handle_allow_block_list",
       "category": "miscellaneous",
       "annotation": "update_allow_block_list",
-      "description": "Updates an existing allowlist or an existing blocklist in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. Note: This action should be used for FortiSandBox version prior 4.0 or later. For FortiSandBox version prior to 4.0 use \"Update White or Black List\" action.",
+      "description": "Updates an existing allow list or an existing blocked list in Fortinet FortiSandbox, based on the input parameter such as indicator type and value, and action you have specified. NOTE: This action replaces the deprecated action \"Update White or Black List\" in FortiSandbox version 4.0 and later.",
       "title": "Update Allow or Block List",
       "parameters": [
         {
           "title": "List Type",
           "name": "list_type",
-          "description": "Type of list on Fortinet FortiSandbox in which you want to add the indicator.\nYou can select from the following list types: White or Black.",
-          "tooltip": "Type of list on Fortinet FortiSandbox in which you want to add the indicator.",
+          "description": "Select the list type on Fortinet FortiSandbox based on which to add the indicator. You can select from the following options: White or Black.",
+          "tooltip": "Select the list type on Fortinet FortiSandbox based on which to add the indicator.",
           "type": "select",
           "options": [
             "ALLOW",
@@ -1037,8 +1037,8 @@
         {
           "title": "Indicator Type",
           "name": "indicator_type",
-          "description": "Type of indicator that you want to add to the allowlist or blocklist in Fortinet FortiSandbox.\nYou can choose from the following values: MD5, SHA1, SHA256, Domain, URL, or URL Regex.",
-          "tooltip": "Type of indicator that you want to add to the allowlist or blocklist in Fortinet FortiSandbox.",
+          "description": "Select the indicator type to add to the allow or block list in Fortinet FortiSandbox. You can select from the following options: MD5, SHA1, SHA256, Domain, URL, or URL Regex.",
+          "tooltip": "Select the indicator type to add to the allow or block list in Fortinet FortiSandbox.",
           "type": "select",
           "options": [
             "MD5",
@@ -1057,8 +1057,8 @@
           "title": "Action",
           "name": "action",
           "type": "select",
-          "description": "Action that you want to apply on the allowlist or blocklist in Fortinet FortiSandbox, i.e., you can choose to append the specified indicator to the allowlist or blocklist in Fortinet FortiSandbox, or you can choose to delete the specified indicator from the allowlist or blocklist in Fortinet FortiSandbox.\nYou can choose from the following actions: Append, Replace, Clear, Download, or Delete.",
-          "tooltip": "Action that you want to apply on the allowlist or blocklist in Fortinet FortiSandbox. If you select DOWNLOAD then attachment is created in FortiSOAR™ based on the other input parameters that you have specified.",
+          "description": "Select the action to apply on the allow or blocklist in Fortinet FortiSandbox. You can select from the following actions: Append, Replace, Clear, Download, or Delete.",
+          "tooltip": "Select the action to apply on the allow or blocklist in Fortinet FortiSandbox. If you select DOWNLOAD then attachment is created in FortiSOAR™ based on the other input parameters that you have specified.",
           "options": [
             "APPEND",
             "REPLACE",
@@ -1075,8 +1075,8 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value that you want to add to the allowlist or blocklist in Fortinet FortiSandbox.",
-                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to add to the allowlist or blocklist in Fortinet FortiSandbox.",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to add to the allow or block list in Fortinet FortiSandbox.",
+                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to add to the allow or block list in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
                 "editable": true,
@@ -1088,8 +1088,8 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value that you want to replaced to the allowlist or blocklist in Fortinet FortiSandbox.",
-                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to replaced to the allowlist or blocklist in Fortinet FortiSandbox.",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to replaced to the allow or block list in Fortinet FortiSandbox.",
+                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to replaced to the allow or block list in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
                 "editable": true,
@@ -1101,8 +1101,8 @@
               {
                 "title": "Indicator Value",
                 "name": "indicator_value",
-                "tooltip": "Provide the value of indicator in list format or single value that you want to delete from the allowlist or blocklist in Fortinet FortiSandbox.",
-                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to delete from the allowlist or blocklist in Fortinet FortiSandbox.",
+                "tooltip": "Provide the value of indicator in list format or single value that you want to delete from the allow or block list in Fortinet FortiSandbox.",
+                "description": "Value of the indicator (considering the Indicator type you have chosen from the Indicator Type drop-down list) that you want to delete from the allow or block list in Fortinet FortiSandbox.",
                 "type": "text",
                 "required": true,
                 "editable": true,

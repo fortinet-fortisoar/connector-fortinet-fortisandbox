@@ -69,7 +69,7 @@
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "jid": "{% if vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0] is number %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0]}}{% else %}\"{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids}}\"{% endif %}"
+                  "jid": "{% if vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids is iterable and vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids is not string %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids[0]}}{% else %}{{vars.steps.Get_Scan_Status_of_Submitted_File.data.result.data.jids}}{% endif %}"
                 },
                 "version": "2.1.0",
                 "do_until": {
@@ -405,7 +405,7 @@
                 "name": "Fortinet FortiSandbox",
                 "config": "",
                 "params": {
-                  "sid": "{% if vars.steps.Submit_URL.data.result.data.sid is number %}{{vars.steps.Submit_URL.data.result.data.sid}}{% else %}\"{{vars.steps.Submit_URL.data.result.data.sid}}\"{% endif %}"
+                  "sid": "{{vars.steps.Submit_URL.data.result.data.sid}}"
                 },
                 "version": "2.1.0",
                 "do_until": {
@@ -959,7 +959,7 @@
             {
               "uuid": "82d0b17d-eef4-4737-8a23-78dbcad0b91b",
               "@type": "WorkflowStep",
-              "name": "Get AV-Rescan Result",
+              "name": "Get AV Rescan Result",
               "description": null,
               "status": null,
               "arguments": {
@@ -1000,7 +1000,7 @@
               "@type": "WorkflowRoute",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Get AV-Rescan Result",
+              "name": "Start-> Get AV Rescan Result",
               "sourceStep": "/api/3/workflow_steps/202ff31d-a974-4e0e-9d5e-df3876daf2b7",
               "targetStep": "/api/3/workflow_steps/82d0b17d-eef4-4737-8a23-78dbcad0b91b"
             }

@@ -1,9 +1,10 @@
 """
 Copyright start
 MIT License
-Copyright (c) 2023 Fortinet Inc
+Copyright (c) 2024 Fortinet Inc
 Copyright end
 """
+
 import requests
 import logging
 from base64 import b64encode
@@ -203,7 +204,7 @@ QUERY_SCHEMA = {
         "method": "post",
         "params": [
             {
-                "url": "/scan/policy/allow-block-list",
+                "url": "/scan/policy/block-allow-list",
                 "list_type": "",
                 "checksum_type": "",
                 "action": "",

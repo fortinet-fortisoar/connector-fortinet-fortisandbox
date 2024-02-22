@@ -267,32 +267,36 @@
         "result": {
           "url": "",
           "data": {
-            "Hostname": "",
-            "64-bit Applications": "",
-            "License Status": "",
-            "vm_network_access": "",
-            "Platform Type": "",
-            "Patch": "",
-            "wf_server_accessible": "",
-            "Current Time": "",
-            "Time Zone": "",
-            "win_lic_activated": "",
-            "Branch Point": "",
-            "FIPS Mode": "",
-            "Minor": "",
-            "Major": "",
             "Build": "",
-            "Admin Domain Configuration": "",
+            "Major": "",
+            "Minor": "",
+            "Patch": "",
             "Version": "",
+            "Hostname": "",
+            "Time Zone": "",
+            "Disk Usage": "",
+            "Inode Usage": "",
+            "System time": "",
+            "Branch Point": "",
+            "FIPS-CC mode": "",
+            "Platform Type": "",
+            "Serial-Number": "",
+            "Disk Available": "",
+            "License Status": "",
+            "Inode Available": "",
+            "vm_network_access": "",
+            "win_lic_activated": "",
             "Platform Full Name": "",
+            "64-bit Applications": "",
+            "wf_server_accessible": "",
             "fdn_server_accessible": "",
-            "Serial Number": "",
             "cloud_server_accessible": "",
+            "Admin Domain Configuration": "",
             "Release Version Information": ""
           },
           "status": {
-            "message": "",
-            "code": ""
+            "code": "",
+            "message": ""
           }
         },
         "ver": "",
@@ -315,6 +319,7 @@
             "suspicious_medium": "",
             "suspicious_high": "",
             "suspicious_low": "",
+            "malicious": "",
             "pending": ""
           },
           "status": {
@@ -392,6 +397,9 @@
             "code": ""
           },
           "data": {
+            "jid": "",
+            "ftype": "",
+            "file_name": "",
             "category": "",
             "rating": "",
             "sha256": "",
@@ -456,7 +464,7 @@
           "url": "",
           "status": {
             "message": "",
-            "code": 0
+            "code": ""
           },
           "data": {
             "rating": [],
@@ -630,20 +638,69 @@
           "value": false
         }
       ],
-      "output_schema": {
-        "id": "",
-        "result": {
-          "status": {
-            "message": "",
-            "code": ""
-          },
-          "data": {
-            "behavior_files": ""
-          },
-          "url": ""
+      "conditional_output_schema": [
+        {
+          "condition": "{{ decode_file_string == false }}",
+          "output_schema": {
+            "id": "",
+            "result": {
+              "status": {
+                "message": "",
+                "code": ""
+              },
+              "data": {
+                "ver": "",
+                "rtype": "",
+                "behavior_files": ""
+              },
+              "url": ""
+            },
+            "ver": ""
+          }
         },
-        "ver": ""
-      },
+        {
+          "condition": "{{ decode_file_string == true }}",
+          "output_schema": {
+            "id": "",
+            "result": {
+              "status": {
+                "message": "",
+                "code": ""
+              },
+              "data": {
+                "ver": "",
+                "rtype": "",
+                "behavior_files": {
+                  "scan_md5": "",
+                  "scan_submit": {
+                    "7019748908627266956": {
+                      "Static Scan Engine": {
+                        "Rating": "",
+                        "Static": {
+                          "MD5": "",
+                          "SHA1": "",
+                          "Size": "",
+                          "Type": "",
+                          "score": "",
+                          "SHA256": "",
+                          "FileName": "",
+                          "score_ai": "",
+                          "fmw_extension": ""
+                        },
+                        "Version": "",
+                        "Category": "",
+                        "Revision": ""
+                      }
+                    }
+                  }
+                }
+              },
+              "url": ""
+            },
+            "ver": ""
+          }
+        }
+      ],
       "enabled": true
     },
     {
@@ -765,7 +822,71 @@
           "value": ""
         }
       ],
-      "output_schema": {},
+      "output_schema": {
+        "id": "",
+        "@id": "",
+        "file": {
+          "id": "",
+          "@id": "",
+          "size": "",
+          "uuid": "",
+          "@type": "",
+          "assignee": "",
+          "filename": "",
+          "metadata": [],
+          "mimeType": "",
+          "thumbnail": "",
+          "uploadDate": ""
+        },
+        "name": "",
+        "type": "",
+        "uuid": "",
+        "@type": "",
+        "tasks": [],
+        "alerts": [],
+        "assets": [],
+        "owners": [],
+        "people": [],
+        "@context": "",
+        "assignee": "",
+        "comments": [],
+        "warrooms": [],
+        "incidents": [],
+        "createDate": "",
+        "createUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "indicators": [],
+        "modifyDate": "",
+        "modifyUser": {
+          "id": "",
+          "@id": "",
+          "name": "",
+          "uuid": "",
+          "@type": "",
+          "avatar": "",
+          "userId": "",
+          "userType": "",
+          "createDate": "",
+          "createUser": "",
+          "modifyDate": "",
+          "modifyUser": ""
+        },
+        "recordTags": [],
+        "userOwners": [],
+        "description": ""
+      },
       "enabled": true
     },
     {
@@ -884,7 +1005,8 @@
         "ver": "",
         "result": {
           "data": {
-            "msg": ""
+            "msg": "",
+            "error": ""
           },
           "status": {
             "code": "",

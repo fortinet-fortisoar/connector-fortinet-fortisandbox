@@ -295,7 +295,7 @@ def handle_allow_block_list(config, params):
             indicator_type = 'url_regex'
 
         if not indicator_value:
-            indicator_value = ['test']
+            indicator_value = []
 
         indicator_value = indicator_value if isinstance(indicator_value, list) else [indicator_value]
 
@@ -311,8 +311,8 @@ def handle_allow_block_list(config, params):
         if params['action'].lower() == 'download':
             if not response['result']['status']['message'] == 'OK':
                 return response
-            download_file = response['result']['data']['download_file']
-            if download_file:
+            download_file = response['result']['data'].get('download_file', '')
+            if params['action'] == 'DOWNLOAD':
                 filename = '{0}_{1}.txt'.format(params['list_type'].lower(), params['indicator_type'].lower())
                 attachment_name = 'FortiSandbox: Download {0} {1}'.format(params['list_type'], params['indicator_type'])
                 return create_cyops_attachment(base64.b64decode(download_file.encode('utf-8')), attachment_name,

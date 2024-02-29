@@ -838,6 +838,9 @@
           "thumbnail": "",
           "uploadDate": ""
         },
+        "cVEs": [],
+        "workspaces": [],
+        "vulnerabilities": [],
         "name": "",
         "type": "",
         "uuid": "",
@@ -1235,20 +1238,93 @@
           }
         }
       ],
-      "output_schema": {
-        "id": "",
-        "ver": "",
-        "result": {
-          "data": {
-            "msg": ""
-          },
-          "status": {
-            "code": "",
-            "message": ""
-          },
-          "url": ""
+      "conditional_output_schema": [
+        {
+          "condition": "{{ action == \"DOWNLOAD\" }}",
+          "output_schema": {
+            "id": "",
+            "@id": "",
+            "file": {
+              "id": "",
+              "@id": "",
+              "size": "",
+              "uuid": "",
+              "@type": "",
+              "assignee": "",
+              "filename": "",
+              "metadata": [],
+              "mimeType": "",
+              "thumbnail": "",
+              "uploadDate": ""
+            },
+            "name": "",
+            "type": "",
+            "uuid": "",
+            "@type": "",
+            "tasks": [],
+            "alerts": [],
+            "assets": [],
+            "owners": [],
+            "people": [],
+            "@context": "",
+            "assignee": "",
+            "comments": [],
+            "warrooms": [],
+            "incidents": [],
+            "createDate": "",
+            "createUser": {
+              "id": "",
+              "@id": "",
+              "name": "",
+              "uuid": "",
+              "@type": "",
+              "avatar": "",
+              "userId": "",
+              "userType": "",
+              "createDate": "",
+              "createUser": "",
+              "modifyDate": "",
+              "modifyUser": ""
+            },
+            "indicators": [],
+            "modifyDate": "",
+            "modifyUser": {
+              "id": "",
+              "@id": "",
+              "name": "",
+              "uuid": "",
+              "@type": "",
+              "avatar": "",
+              "userId": "",
+              "userType": "",
+              "createDate": "",
+              "createUser": "",
+              "modifyDate": "",
+              "modifyUser": ""
+            },
+            "recordTags": [],
+            "userOwners": [],
+            "description": ""
+          }
+        },
+        {
+          "condition": "{{ action != \"DOWNLOAD\" }}",
+          "output_schema": {
+            "id": "",
+            "ver": "",
+            "result": {
+              "data": {
+                "msg": ""
+              },
+              "status": {
+                "code": "",
+                "message": ""
+              },
+              "url": ""
+            }
+          }
         }
-      },
+      ],
       "enabled": true
     }
   ]

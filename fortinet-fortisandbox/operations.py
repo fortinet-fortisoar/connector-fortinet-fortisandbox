@@ -8,6 +8,7 @@ Copyright end
 
 import time, os
 import base64
+from datetime import datetime
 from base64 import b64encode
 from integrations.crudhub import make_request, make_file_upload_request
 from connectors.cyops_utilities.builtins import download_file_from_cyops
@@ -298,6 +299,15 @@ def handle_allow_block_list(config, params):
             indicator_value = []
 
         indicator_value = indicator_value if isinstance(indicator_value, list) else [indicator_value]
+        status = params.get('status')
+        expiry_date = params.get('expiry_date')
+        if expiry_date:
+            expiry_date = int(datetime.strptime(expiry_date, "%Y-%m-%dT%H:%M:%S.%fZ").timestamp())
+        comment = params.get('comment', '')
+
+        if status or expiry_date or comment not in (None, ''):
+            for i in range(len(indicator_value)):
+                indicator_value[i] = f"{indicator_value[i]}, {comment}, {expiry_date}, {0 if status == 'Disabled' else 1}"
 
         indicator_value = '\n'.join(indicator_value)
 

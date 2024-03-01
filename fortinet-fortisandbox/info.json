@@ -1207,6 +1207,41 @@
                 "editable": true,
                 "visible": true,
                 "value": ""
+              },
+              {
+                "title": "Status",
+                "name": "status",
+                "description": "Select the status of the indicator that you want to add to the allow or block list in Fortinet FortiSandbox. By default it is set to Enabled. You can select from the following options: Enabled or Disabled.",
+                "tooltip": "Select the status of the indicator that you want to add to the allow or block list in Fortinet FortiSandbox. By default it is set to Enabled.",
+                "type": "select",
+                "options": [
+                  "Enabled",
+                  "Disabled"
+                ],
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "value": "Enabled"
+              },
+              {
+                "title": "Expiry Date",
+                "name": "expiry_date",
+                "description": "Specify the expiry datetime for the indicator that you want to add to the allow or block list in Fortinet FortiSandbox.",
+                "tooltip": "Specify the expiry datetime for the indicator that you want to add to the allow or block list in Fortinet FortiSandbox.",
+                "type": "datetime",
+                "required": false,
+                "editable": true,
+                "visible": true
+              },
+              {
+                "title": "Comment",
+                "name": "comment",
+                "description": "Specify the comment for the indicator that you want to add to the allow or block list in Fortinet FortiSandbox.",
+                "tooltip": "Specify the comment for the indicator that you want to add to the allow or block list in Fortinet FortiSandbox.",
+                "type": "text",
+                "required": false,
+                "editable": true,
+                "visible": true
               }
             ],
             "REPLACE": [
@@ -1220,6 +1255,41 @@
                 "editable": true,
                 "visible": true,
                 "value": ""
+              },
+              {
+                "title": "Status",
+                "name": "status",
+                "description": "Select the status of the indicator that you want to replace to the allow or block list in Fortinet FortiSandbox. By default it is set to Enabled. You can select from the following options: Enabled or Disabled.",
+                "tooltip": "Select the status of the indicator that you want to add to the replace or block list in Fortinet FortiSandbox. By default it is set to Enabled.",
+                "type": "select",
+                "options": [
+                  "Enabled",
+                  "Disabled"
+                ],
+                "required": false,
+                "editable": true,
+                "visible": true,
+                "value": "Enabled"
+              },
+              {
+                "title": "Expiry Date",
+                "name": "expiry_date",
+                "description": "Specify the expiry datetime for the indicator that you want to replace to the allow or block list in Fortinet FortiSandbox.",
+                "tooltip": "Specify the expiry datetime for the indicator that you want to replace to the allow or block list in Fortinet FortiSandbox.",
+                "type": "datetime",
+                "required": false,
+                "editable": true,
+                "visible": true
+              },
+              {
+                "title": "Comment",
+                "name": "comment",
+                "description": "Specify the comment for the indicator that you want to replace to the allow or block list in Fortinet FortiSandbox.",
+                "tooltip": "Specify the comment for the indicator that you want to replace to the allow or block list in Fortinet FortiSandbox.",
+                "type": "text",
+                "required": false,
+                "editable": true,
+                "visible": true
               }
             ],
             "DELETE": [

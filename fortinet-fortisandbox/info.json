@@ -640,7 +640,7 @@
       ],
       "conditional_output_schema": [
         {
-          "condition": "{{ decode_file_string == false }}",
+          "condition": "{{decode_file_string == false}}",
           "output_schema": {
             "id": "",
             "result": {
@@ -659,7 +659,7 @@
           }
         },
         {
-          "condition": "{{ decode_file_string == true }}",
+          "condition": "{{decode_file_string == true}}",
           "output_schema": {
             "id": "",
             "result": {
@@ -1310,7 +1310,7 @@
       ],
       "conditional_output_schema": [
         {
-          "condition": "{{ action == \"DOWNLOAD\" }}",
+          "condition": "{{action == 'DOWNLOAD'}}",
           "output_schema": {
             "id": "",
             "@id": "",
@@ -1378,7 +1378,7 @@
           }
         },
         {
-          "condition": "{{ action != \"DOWNLOAD\" }}",
+          "condition": "{{action != 'DOWNLOAD'}}",
           "output_schema": {
             "id": "",
             "ver": "",

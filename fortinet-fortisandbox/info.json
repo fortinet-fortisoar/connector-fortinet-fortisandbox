@@ -214,7 +214,7 @@
           }
         },
         {
-          "condition": "{{un_zip_file == false}}",
+          "condition": "{{un_zip_file == true}}",
           "output_schema": {
             "id": "",
             "ver": "",

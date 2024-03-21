@@ -11,7 +11,7 @@ import base64
 from datetime import datetime
 from base64 import b64encode
 from integrations.crudhub import make_request, make_file_upload_request
-from connectors.cyops_utilities.builtins import download_file_from_cyops
+from connectors.cyops_utilities.builtins import download_file_from_cyops, unzip_protected_file
 from connectors.core.connector import get_logger, ConnectorError
 from .utils import QUERY_SCHEMA, FortiSandbox
 from django.conf import settings
@@ -70,30 +70,48 @@ def _check_health(config):
         raise ConnectorError('{0}'.format(err))
 
 
+def upload_file(forti, tmp_file_path, filename, params):
+    file_path = os.path.join(settings.TMP_FILE_ROOT, tmp_file_path)
+    with open(file_path, 'rb') as attachment:
+        file_data = attachment.read()
+    test_input = QUERY_SCHEMA.get('file_upload')
+    test_input = forti._load_file_for_upload(file_data, test_input, filename)
+    test_input['params'][0]['overwrite_vm_list'] = params['overwrite_vm_list']
+    test_input['session'] = forti.session_id
+    return forti._handle_post(test_input)
+
+
 def submit_file(config, params):
     forti = FortiSandbox(config)
     try:
         file_iri, filename = handle_params(params)
-        dw_file_md = download_file_from_cyops(file_iri)
-        tmp_file_path = dw_file_md.get('cyops_file_path')
-        if not filename:
-            file_name = dw_file_md.get('filename')
-            if len(file_name) == 0 and len(tmp_file_path) > 0:
-                new_name = tmp_file_path.split('/')
-                if len(new_name) == 3:
-                    file_name = new_name[2]
-                else:
-                    file_name = tmp_file_path
-            filename = file_name
-        file_path = os.path.join(settings.TMP_FILE_ROOT, tmp_file_path)
-        with open(file_path, 'rb') as attachment:
-            file_data = attachment.read()
-        test_input = QUERY_SCHEMA.get('file_upload')
-        test_input = forti._load_file_for_upload(file_data, test_input, filename)
-        test_input['params'][0]['overwrite_vm_list'] = params['overwrite_vm_list']
-        test_input['session'] = forti.session_id
-        response = forti._handle_post(test_input)
-        return response
+        if params.get('un_zip_file'):
+            password = params.get('password')
+            filenames = unzip_protected_file(password=password, file_iri=file_iri).get('filenames')
+            if len(filenames) == 0:
+                raise ConnectorError("No files extracted from correctly. Please check whether zip contains files.")
+            file_path = filenames.pop()
+            filename = file_path.split('/')[-1]
+            result = upload_file(forti, file_path, filename, params)
+            result['results'] = [result.pop('result', {"data": "No result found"})]
+            for file_path in filenames:
+                filename = file_path.split('/')[-1]
+                response = upload_file(forti, file_path, filename, params)
+                result['results'].append(response.get('result'))
+        else:
+            dw_file_md = download_file_from_cyops(file_iri)
+            tmp_file_path = dw_file_md.get('cyops_file_path')
+            if not filename:
+                file_name = dw_file_md.get('filename')
+                if len(file_name) == 0 and len(tmp_file_path) > 0:
+                    new_name = tmp_file_path.split('/')
+                    if len(new_name) == 3:
+                        file_name = new_name[2]
+                    else:
+                        file_name = tmp_file_path
+                filename = file_name
+            result = upload_file(forti, tmp_file_path, filename, params)
+        return result
     except Exception as e:
         logger.exception(str(e))
         raise ConnectorError(e)

@@ -166,24 +166,75 @@
           "visible": true,
           "required": false,
           "value": ""
-        }
-      ],
-      "output_schema": {
-        "ver": "",
-        "id": "",
-        "result": {
-          "url": "",
-          "status": {
-            "message": "",
-            "code": ""
-          },
-          "data": {
-            "msg": "",
-            "sid": "",
-            "error": ""
+        },
+        {
+          "name": "un_zip_file",
+          "title": "Unzip File",
+          "type": "checkbox",
+          "tooltip": "Specify whether to unzip file and submit extracted files to Fortinet FortiSandbox.",
+          "description": "Specify whether to unzip file and submit extracted files to Fortinet FortiSandbox.",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": false,
+          "onchange": {
+            "true": [
+              {
+                "title": "Password",
+                "name": "password",
+                "description": "Password to open the protected file",
+                "tooltip": "Provide the password for unzipping the file, in case the zipped file is password-protected.",
+                "type": "password",
+                "visible": true,
+                "editable": true,
+                "required": false
+              }
+            ]
           }
         }
-      },
+      ],
+      "conditional_output_schema": [
+        {
+          "condition": "",
+          "output_schema": {
+            "ver": "",
+            "id": "",
+            "result": {
+              "url": "",
+              "status": {
+                "message": "",
+                "code": ""
+              },
+              "data": {
+                "msg": "",
+                "sid": "",
+                "error": ""
+              }
+            }
+          }
+        },
+        {
+          "condition": "",
+          "output_schema": {
+            "id": "",
+            "ver": "",
+            "results": [
+              {
+                "url": "",
+                "data": {
+                  "msg": "",
+                  "sid": "",
+                  "error": ""
+                },
+                "status": {
+                  "code": "",
+                  "message": ""
+                }
+              }
+            ]
+          }
+        }
+      ],
       "enabled": true
     },
     {
